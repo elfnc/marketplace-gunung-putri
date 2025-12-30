@@ -51,19 +51,19 @@
 **Goal:** User browsing nyaman, visual "mahal" tapi merakyat.
 
 ### Core Layout
-- [ ] Navbar (Logo, Search, Cart Icon)
-- [ ] Footer (Simple links, Copyright)
-- [ ] Mobile Navigation (if needed)
+- [x] Navbar (Logo, Search, Cart Icon)
+- [x] Footer (Simple links, Copyright)
+- [x] Mobile Navigation (if needed)
 
 ### Pages
-- [ ] **Home Page:**
-    - [ ] Hero Section (Clean, no carousel drama)
-    - [ ] Category Filter (Horizontal Scroll)
-    - [ ] Featured UMKM Grid
-- [ ] **Product Listing:**
-    - [ ] Grid Layout (Responsive)
-    - [ ] Pagination (Server-side)
-    - [ ] Filter by Category
+- [x] **Home Page:**
+    - [x] Hero Section (Clean, no carousel drama)
+    - [x] Category Filter (Horizontal Scroll)
+    - [x] Featured UMKM Grid
+- [x] **Product Listing:**
+    - [x] Grid Layout (Responsive)
+    - [x] Pagination (Server-side)
+    - [x] Filter by Category
 - [ ] **Detail Page (`/produk/[slug]`):**
     - [ ] Product Image (Object-fit: cover)
     - [ ] Product Info (Price hierarchy)
