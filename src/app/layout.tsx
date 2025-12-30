@@ -1,11 +1,15 @@
-// src/app/layout.tsx
 import type { Metadata } from "next";
-import { Inter } from "next/font/google"; // Atau font pilihanmu
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/providers/queryProvider";
 import { Toaster } from "@/components/ui/sonner";
 
-const inter = Inter({ subsets: ["latin"] });
+// Setup Font
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-jakarta",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Marketplace UMKM Gunung Putri",
@@ -19,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body className={inter.className}>
+      <body className={`${jakarta.variable} antialiased`}>
         <QueryProvider>
           {children}
           <Toaster position="top-center" richColors />

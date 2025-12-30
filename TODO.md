@@ -20,18 +20,18 @@
 ### Setup
 - [x] Init Next.js App Router (TypeScript)
 - [x] Install Tailwind & Shadcn/ui
-- [ ] Configure `globals.css` (Variables for Custom Palette)
-- [ ] Setup Folder Structure (Monorepo-style: `(public)`, `(admin)`, `components`, `lib`)
+- [x] Configure `globals.css` (Variables for Custom Palette)
+- [x] Setup Folder Structure (Monorepo-style: `(public)`, `(admin)`, `components`, `lib`)
 
 ### Database & Backend
-- [ ] Setup PostgreSQL (Neon / Supabase)
-- [ ] Install Prisma & Init Client
-- [ ] **Schema Design:**
-    - [ ] `User` (Admin Only)
-    - [ ] `Category`
-    - [ ] `Umkm` (Relation: Category 1-N UMKM)
-    - [ ] `Product` (Relation: UMKM 1-N Product)
-- [ ] Seed Initial Admin Data
+- [x] Setup PostgreSQL (Neon / Supabase)
+- [x] Install Prisma & Init Client
+- [x] **Schema Design:**
+    - [x] `User` (Admin Only)
+    - [x] `Category`
+    - [x] `Umkm` (Relation: Category 1-N UMKM)
+    - [x] `Product` (Relation: UMKM 1-N Product)
+- [x] Seed Initial Admin Data
 - [ ] Setup NextAuth (Credentials Provider)
 - [ ] Setup Image Upload (Supabase Storage / Uploadthing)
 
