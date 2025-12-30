@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --------------------------------------
+// 1. AUTH (Admin Only)
+// --------------------------------------
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String   // Hashed
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+enum Role {
+  ADMIN
+  USER // Disiapkan kalau nanti butuh user biasa
+}
+
+// --------------------------------------
+// 2. MASTER DATA (Category)
+// --------------------------------------
+model Category {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique // Untuk URL ramah SEO: /kategori/makanan
+  createdAt DateTime @default(now())
+  
+  // Relasi
+  umkms     Umkm[]
+
+  @@map("categories")
+}
+
+// --------------------------------------
+// 3. CORE DOMAIN (UMKM & Product)
+// --------------------------------------
+model Umkm {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique // URL: /umkm/warung-bu-sri
+  description String   @db.Text
+  address     String?  @db.Text
+  phone       String   // Format: 628... (Wajib untuk WA)
+  imageUrl    String?  // Foto Profil/Banner UMKM
+  isActive    Boolean  @default(true) // Bisa dimatikan admin kalau bermasalah
+  
+  // Relasi
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  products    Product[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([categoryId])
+  @@map("umkms")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique // URL: /produk/nasi-uduk-spesial
+  description String?  @db.Text
+  price       Decimal  @db.Decimal(10, 2) // Pakai Decimal buat uang, jangan Float!
+  imageUrl    String?
+  isActive    Boolean  @default(true)
+
+  // Relasi
+  umkmId      String
+  umkm        Umkm     @relation(fields: [umkmId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([umkmId])
+  @@map("products")
+}
