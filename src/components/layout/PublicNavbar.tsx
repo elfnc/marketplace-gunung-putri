@@ -1,80 +1,65 @@
-"use client"
-
-import Link from "next/link"
-import { Logo } from "@/components/brand/logo"
-import { Button } from "@/components/ui/button"
-import { ShoppingCart, Menu, Search } from "lucide-react"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import Link from "next/link";
+import { Button } from "../ui/button";
+import { ShoppingCart } from "lucide-react";
+import { COPY } from "@/lib/copywritting";
+import { MobileMenu } from "./navbar/MobileMenu";
+import { Logo } from "../brand/logo";
+import { NavLinks } from "./navbar/NavLink";
+import { getWhatsAppLink } from "@/lib/utils";
 
 export function PublicNavbar() {
-  const navLinks = [
-    { name: "Produk", href: "/produk" },
-    { name: "UMKM", href: "/umkm" },
-    { name: "Event", href: "#event" }, // Anchor link ke section event
-    { name: "Tentang", href: "/tentang" },
-  ]
-
   return (
-    <header className="sticky top-0 z-50 w-full bg-white border-b border-[#E6E3DF] h-[72px]">
-      <div className="container mx-auto px-4 h-full flex items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-[#E6E3DF] supports-[backdrop-filter]:bg-white/60">
+      <div className="container mx-auto h-[72px] px-4 md:px-6 flex items-center justify-between">
         
-        {/* LEFT: Mobile Menu & Logo */}
-        <div className="flex items-center gap-4">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden -ml-2">
-                <Menu className="h-6 w-6 text-[#1C1C1C]" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left">
-               <nav className="flex flex-col gap-4 mt-8">
-                  {navLinks.map((link) => (
-                    <Link key={link.name} href={link.href} className="text-lg font-medium">
-                      {link.name}
-                    </Link>
-                  ))}
-                  <Button className="w-full bg-[#1F3D2B]">Daftarkan UMKM</Button>
-               </nav>
-            </SheetContent>
-          </Sheet>
-
-          <Link href="/" className="flex items-center gap-2">
-            <Logo className="h-10 w-10" />
-            <span className="hidden sm:inline-block font-bold text-xl tracking-tight text-[#1F3D2B]">
-              Gunung Putri<span className="text-[#C56A4A]">.</span>
-            </span>
+        {/* LEFT SECTION */}
+        <div className="flex items-center gap-4 md:gap-8">
+          {/* Mobile Hamburger (Hidden on Desktop) */}
+          <MobileMenu />
+          
+          {/* LOGO AREA (Polished) */}
+          <Link href="/" className="flex items-center gap-2.5 group hover:opacity-95 transition-all">
+            {/* Icon Container */}
+            <div className="h-10 w-10 bg-[#1F3D2B]/5 border border-[#1F3D2B]/10 rounded-xl flex items-center justify-center group-hover:bg-[#1F3D2B]/10 transition-colors">
+               <Logo className="h-6 w-6" />
+            </div>
+            
+            {/* Text Stack */}
+            <div className="flex flex-col justify-center -space-y-0.5">
+               <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/80 leading-none">
+                 Marketplace
+               </span>
+               <span className="text-lg font-bold text-[#1F3D2B] tracking-tight leading-none">
+                 Gunung Putri<span className="text-[#C56A4A]">.</span>
+               </span>
+            </div>
           </Link>
+
+          {/* Desktop Links (Hidden on Mobile) */}
+          <NavLinks className="hidden md:flex" />
         </div>
 
-        {/* CENTER: Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href} 
-              className="text-sm font-medium text-[#1C1C1C] hover:text-[#1F3D2B] transition-colors"
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
-
-        {/* RIGHT: Actions */}
+        {/* RIGHT SECTION (CTA & Cart) */}
         <div className="flex items-center gap-3">
-            {/* CTA Navbar (Desktop & Mobile Visible but small) */}
-            <Button 
-                size="sm" 
-                className="bg-[#1F3D2B] hover:bg-[#1F3D2B]/90 text-white rounded-lg px-4 font-medium"
-                asChild
-            >
-                <Link href="/daftar-umkm">Daftarkan UMKM</Link>
-            </Button>
+          
+          {/* CTA: Growth Lever */}
+          <Button 
+            className="bg-[#1F3D2B] hover:bg-[#1F3D2B]/90 text-white rounded-full font-medium text-xs md:text-sm px-4 md:px-5 h-9 md:h-10 shadow-sm transition-all hover:scale-105"
+            asChild
+          >
+            <Link href={getWhatsAppLink(COPY.WA_TEMPLATE.REGISTER)} target="_blank">
+                <span className="md:hidden">Daftar</span>
+                <span className="hidden md:inline">Daftarkan UMKM</span>
+            </Link>
+          </Button>
 
-            {/* Cart Icon */}
-            <Button variant="ghost" size="icon" className="relative text-[#1C1C1C]">
-                <ShoppingCart className="h-5 w-5" />
-                <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-[#C56A4A] ring-2 ring-white" />
-            </Button>
+          {/* Cart Icon */}
+          <Link href="/cart" className="relative group p-2.5 rounded-full hover:bg-secondary transition-colors">
+            <ShoppingCart className="h-5 w-5 md:h-6 md:w-6 text-[#1C1C1C] group-hover:text-[#1F3D2B] transition-colors" />
+            {/* Badge Dummy (Nanti diganti logic cart) */}
+            <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-[#C56A4A] ring-2 ring-white" />
+          </Link>
+
         </div>
       </div>
     </header>

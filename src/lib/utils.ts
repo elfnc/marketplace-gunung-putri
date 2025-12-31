@@ -1,6 +1,7 @@
 // src/lib/utils.ts
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { COPY } from "@/lib/copywritting"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -25,4 +26,23 @@ export function generateSlug(text: string): string {
     .replace(/\-\-+/g, '-')   // Ganti multiple dash dengan single dash
     .replace(/^-+/, '')       // Trim dash di depan
     .replace(/-+$/, '')       // Trim dash di belakang
+}
+
+
+export function getWhatsAppLink(
+  message: string = "", 
+  phoneNumber: string = COPY.CONTACT.ADMIN_WA
+) {
+  // 1. Bersihkan nomor telepon (buang karakter non-angka)
+  let cleanPhone = phoneNumber.replace(/\D/g, '')
+
+  // 2. Pastikan format 62 (ganti 0 di depan jadi 62)
+  if (cleanPhone.startsWith('0')) {
+    cleanPhone = '62' + cleanPhone.slice(1)
+  }
+
+  // 3. Encode pesan (biar enter/spasi terbaca di URL)
+  const encodedMessage = encodeURIComponent(message)
+
+  return `https://wa.me/${cleanPhone}?text=${encodedMessage}`
 }

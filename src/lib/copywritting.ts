@@ -37,5 +37,26 @@ export const COPY = {
   FOOTER: {
     BRAND: "Marketplace UMKM Lokal Gunung Putri",
     TAGLINE: "Dibuat untuk mendukung usaha lokal.",
+  },
+
+  CONTACT: {
+    ADMIN_WA: "6281234567890", // Ganti dengan Nomor WA Admin Asli
+  },
+  
+  WA_TEMPLATE: {
+    REGISTER: `Halo Admin Gunung Putri, saya mau daftarkan UMKM saya.
+
+Mohon dibantu, berikut datanya:
+--------------------------------
+Nama Pemilik: 
+Nama UMKM: 
+Kategori Produk: 
+Alamat Lengkap: 
+Instagram (opsional):
+Foto Produk: 
+--------------------------------
+Apakah ada syarat lainnya? Terima kasih.`,
+    
+    ASK_INFO: `Halo Admin, saya mau tanya-tanya seputar Marketplace Gunung Putri dong...`
   }
 }
