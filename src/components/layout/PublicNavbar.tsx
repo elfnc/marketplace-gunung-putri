@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ShoppingCart } from "lucide-react";
@@ -9,8 +11,8 @@ import { getWhatsAppLink } from "@/lib/utils";
 
 export function PublicNavbar() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-[#E6E3DF] supports-[backdrop-filter]:bg-white/60">
-      <div className="container mx-auto h-[72px] px-4 md:px-6 flex items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-[#E6E3DF] supports-backdrop-filter:bg-white/60">
+      <div className="container mx-auto h-18 px-4 md:px-6 flex items-center justify-between">
         
         {/* LEFT SECTION */}
         <div className="flex items-center gap-4 md:gap-8">

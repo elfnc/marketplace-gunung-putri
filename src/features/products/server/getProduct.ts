@@ -42,6 +42,7 @@ export async function getProducts({ page = 1, category, search }: ProductFilterP
     umkm: { isActive: true }
   }
 
+  // Logic filter Kategori (tetap menjaga isActive: true punya UMKM)
   if (category && category !== "all") {
     whereClause.umkm = {
       ...whereClause.umkm,
@@ -54,7 +55,8 @@ export async function getProducts({ page = 1, category, search }: ProductFilterP
   if (search) {
     whereClause.OR = [
       { name: { contains: search, mode: 'insensitive' } },
-      { description: { contains: search, mode: 'insensitive' } }
+      { description: { contains: search, mode: 'insensitive' } },
+      { umkm: { name: { contains: search, mode: 'insensitive' } } }
     ]
   }
 
@@ -79,7 +81,9 @@ export async function getProducts({ page = 1, category, search }: ProductFilterP
     metadata: {
       hasNextPage: page * ITEMS_PER_PAGE < totalCount,
       totalPages: Math.ceil(totalCount / ITEMS_PER_PAGE),
-      totalCount
+      totalCount,
+      // Tambahkan ini biar dipake di pagination UI
+      currentPage: page 
     }
   }
 }

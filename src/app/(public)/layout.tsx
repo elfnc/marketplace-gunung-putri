@@ -1,5 +1,6 @@
 import { PublicNavbar } from "@/components/layout/PublicNavbar"
 import { COPY } from "@/lib/copywritting"
+import Link from "next/link"
 
 export default function PublicLayout({
   children,
@@ -18,6 +19,11 @@ export default function PublicLayout({
             <p className="text-sm text-muted-foreground max-w-md mx-auto">
                 {COPY.FOOTER.TAGLINE}
             </p>
+            <div className="text-sm font-medium">
+         <Link href="/dukung" className="text-[#C56A4A] hover:underline">
+            Dukung Project Ini ♡
+         </Link>
+      </div>
             <div className="mt-8 text-xs text-muted-foreground/60">
                 &copy; {new Date().getFullYear()} Gunung Putri. Local Pride.
             </div>

@@ -13,14 +13,11 @@ export function SupportSection() {
         <p className="text-muted-foreground mb-6 leading-relaxed whitespace-pre-line">
           {COPY.SUPPORT.TEXT}
         </p>
-        <div className="flex flex-wrap justify-center gap-3">
-             <Button variant="outline" size="sm" className="rounded-full border-[#E6E3DF] hover:bg-[#F4F1EC] hover:text-[#C56A4A]" asChild>
-                <Link href="https://trakteer.id/..." target="_blank">
-                    {COPY.SUPPORT.BTN_TRAKTEER}
-                </Link>
-             </Button>
-             <Button variant="outline" size="sm" className="rounded-full border-[#E6E3DF] hover:bg-[#F4F1EC] hover:text-[#C56A4A]" asChild>
-                <Link href="https://saweria.co/..." target="_blank">
+        <div className="flex justify-center">
+             {/* Hapus Button Trakteer */}
+             <Button variant="outline" className="rounded-full border-[#E6E3DF] hover:bg-[#F4F1EC] hover:text-[#C56A4A] gap-2 px-6" asChild>
+                <Link href={COPY.SUPPORT.LINK_SAWERIA} target="_blank">
+                    <Coffee className="h-4 w-4" />
                     {COPY.SUPPORT.BTN_SAWERIA}
                 </Link>
              </Button>

@@ -14,7 +14,7 @@
 
 ---
 
-## 🚀 Phase 1: Foundation & Admin (Week 1)
+## 🚀 Phase 1: Foundation & Admin (DONE)
 **Goal:** Admin bisa login dan input data real.
 
 ### Setup
@@ -33,87 +33,92 @@
     - [x] `Product` (Relation: UMKM 1-N Product)
 - [x] Seed Initial Admin Data
 - [x] Setup NextAuth (Credentials Provider)
-- [ ] Setup Image Upload (Supabase Storage / Uploadthing)
+- [x] Image Handling (Input URL Manual for MVP)
 
 ### Admin UI
 - [x] Login Page (`/login`)
 - [x] Admin Dashboard Layout (Sidebar + Protected Route)
-- [ ] **UMKM Management:**
-    - [ ] Create/Edit Form (Zod Validation)
-    - [ ] List View (Table)
-- [ ] **Product Management:**
-    - [ ] Create/Edit Form (Image Upload)
-    - [ ] List View
+- [x] **UMKM Management:**
+    - [x] Create/Edit Form (Zod Validation + Auto Slug)
+    - [x] List View (Table + Search + Pagination)
+    - [x] Delete with Confirmation
+- [x] **Product Management:**
+    - [x] Create/Edit Form (Zod Validation + Decimal Fix)
+    - [x] List View (Table + Search + Pagination)
+    - [x] Delete with Confirmation
 
 ---
 
-## 🛍️ Phase 2: Public UI - "The Calm Vibe" (Week 2)
+## 🛍️ Phase 2: Public UI - "The Calm Vibe" (DONE)
 **Goal:** User browsing nyaman, visual "mahal" tapi merakyat.
 
 ### Core Layout
-- [x] Navbar (Logo, Search, Cart Icon)
+- [x] Navbar (Logo Polished, Sticky, Mobile Menu)
 - [x] Footer (Simple links, Copyright)
-- [x] Mobile Navigation (if needed)
+- [x] WhatsApp Helper Integration
 
 ### Pages
 - [x] **Home Page:**
-    - [x] Hero Section (Clean, no carousel drama)
-    - [x] Category Filter (Horizontal Scroll)
-    - [x] Featured UMKM Grid
-- [x] **Product Listing:**
+    - [x] Hero Section (Split View + Copywriting)
+    - [x] Search & Category Section (Focus Area)
+    - [x] Featured UMKM & Products
+    - [x] Event Banner (Auto-hide)
+    - [x] Soft Donation Section
+- [x] **Product Listing (`/produk`):**
     - [x] Grid Layout (Responsive)
     - [x] Pagination (Server-side)
-    - [x] Filter by Category
-- [ ] **Detail Page (`/produk/[slug]`):**
-    - [ ] Product Image (Object-fit: cover)
-    - [ ] Product Info (Price hierarchy)
-    - [ ] "Add to Cart" Button
-    - [ ] Related Products
-- [ ] **UMKM Profile (`/umkm/[slug]`):**
+    - [x] Filter by Category & Search
+    - [x] Empty States & Polish UI
+- [x] **Detail Page (`/produk/[slug]`):**
+    - [x] Product Image & Info
+    - [x] Dynamic Metadata (SEO)
+    - [x] "Add to Cart" Button (Connected to Store)
+- [ ] **UMKM Profile (`/umkm/[slug]`):** (Pending/Next Release)
     - [ ] Header Info (Name, Address)
     - [ ] Product List per UMKM
 
 ---
 
-## 🛒 Phase 3: The Logic - Cart & WhatsApp (Week 3)
+## 🛒 Phase 3: The Logic - Cart & WhatsApp (DONE)
 **Goal:** Order flow jalan tanpa login user.
 
 ### State Management (Zustand)
-- [ ] Setup Store (`useCartStore`)
-- [ ] Implement `persist` middleware (LocalStorage)
-- [ ] Action: `addItem`, `removeItem`, `updateQty`
-- [ ] Selector: `totalPrice`, `totalItems`
+- [x] Install `zustand` + `sonner`
+- [x] Setup Store (`useCartStore`)
+- [x] Implement `persist` middleware (LocalStorage)
+- [x] Action: `addItem`, `removeItem`, `updateQty`
+- [x] Selector: `totalPrice`, `totalItems`
+- [x] Client Component: `AddToCartButton` & `CartIndicator`
 
 ### Cart Page Logic
-- [ ] **Grouping Logic:** Group items by `umkmId`
-- [ ] UI: Render Card per UMKM Group
-- [ ] Subtotal per UMKM
+- [x] **Grouping Logic:** Group items by `umkmId`
+- [x] UI: Render Card per UMKM Group (Split Checkout)
+- [x] Subtotal per UMKM
 
 ### WhatsApp Engine
-- [ ] Helper Function: `generateWAUrl(phone, items)`
-- [ ] Format Message:
-    - [ ] Greeting
-    - [ ] List Items
-    - [ ] Total Estimate
-- [ ] Connect Button "Pesan via WhatsApp"
+- [x] Helper Function: `generateWAUrl(phone, items)`
+- [x] Format Message:
+    - [x] Greeting
+    - [x] List Items with Qty & Price
+    - [x] Total Estimate
+- [x] Connect Button "Checkout ke WhatsApp"
 
 ---
 
-## 💰 Phase 4: Polish & Monetization (Week 4)
+## 💰 Phase 4: Polish & Monetization (ALMOST DONE)
 **Goal:** Siap rilis, SEO aman, channel duit siap.
 
 ### Monetization (Low Profile)
-- [ ] Page `/dukung-umkm-lokal`
-- [ ] Integration Link: Trakteer / Saweria
-- [ ] Section: "Sponsor Lokal" (Static List)
+- [x] Page `/dukung` (Soft Donation)
+- [x] Integration Link: Trakteer / Saweria (via Copywriting Config)
 
 ### SEO & Performance
-- [ ] Dynamic Metadata (`generateMetadata` for Products/UMKM)
-- [ ] Sitemap (`next-sitemap`)
-- [ ] Robots.txt
-- [ ] OpenGraph Images (Social Share preview)
+- [x] Sitemap (`sitemap.ts`)
+- [x] Robots.txt (`robots.ts`)
+- [x] OpenGraph Images (`opengraph-image.tsx`)
+- [ ] Check Response Responsiveness (Mobile)
 
-### Deployment
+### Deployment (FINAL BOSS)
 - [ ] Environment Variables Check (`.env.production`)
 - [ ] Build Check (`npm run build`)
 - [ ] Deploy to Vercel
@@ -122,6 +127,7 @@
 ---
 
 ## 📝 Notes & Ideas
-- [ ] **Future:** Search Bar with Debounce
+- [x] **Done:** Search Bar with Debounce (Admin & Public)
+- [x] **Done:** Copywriting Centralized Config
+- [x] **Done:** Product Card Polish (Location & Desc)
 - [ ] **Future:** Filter by Location (Desa)
-- [ ] **Strict Rule:** Jangan tambah fitur payment gateway sebelum traffic stabil.
