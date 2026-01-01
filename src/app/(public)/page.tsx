@@ -88,8 +88,9 @@ export default async function HomePage() {
       <HeroSection products={productsForHero} />
 
       {/* 2. SEARCH & CATEGORY (Sand Background) */}
-      {/* CategoryRail lama dihapus, diganti section ini */}
-      <SearchCategorySection />
+      <Suspense fallback={<div className="container mx-auto h-24 bg-secondary/20 animate-pulse rounded-xl my-8" />}>
+        <SearchCategorySection />
+      </Suspense>
 
       {/* 3. PRODUK UNGGULAN */}
       <section className="container mx-auto px-4 py-16 md:px-6 space-y-8">

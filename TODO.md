@@ -116,11 +116,11 @@
 - [x] Sitemap (`sitemap.ts`)
 - [x] Robots.txt (`robots.ts`)
 - [x] OpenGraph Images (`opengraph-image.tsx`)
-- [ ] Check Response Responsiveness (Mobile)
+- [x] Check Response Responsiveness (Mobile)
 
 ### Deployment (FINAL BOSS)
-- [ ] Environment Variables Check (`.env.production`)
-- [ ] Build Check (`npm run build`)
+- [x] Environment Variables Check (`.env.production`)
+- [x] Build Check (`npm run build`)
 - [ ] Deploy to Vercel
 - [ ] Domain Setup
 

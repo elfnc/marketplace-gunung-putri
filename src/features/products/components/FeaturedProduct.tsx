@@ -23,10 +23,10 @@ export async function FeaturedProducts() {
                             imageUrl={product.imageUrl}
                             umkmName={product.umkm.name}
                             category={product.umkm.category.name}
-
-                            // 👇 TAMBAHKAN DUA BARIS INI JUGA
                             description={product.description}
                             umkmAddress={product.umkm.address}
+                            umkmId={product.umkmId}
+                            umkmPhone={product.umkm.phone}
                         />
                     ))}
                 </div>

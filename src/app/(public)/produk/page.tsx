@@ -9,6 +9,7 @@ import { getCategories, getProducts } from "@/features/products/server/getProduc
 import { ProductSearch } from "@/features/products/components/ProductSearch"
 import { FilterSidebar } from "@/features/products/components/FilterSidebar"
 import { ProductCard } from "@/features/products/components/ProductCard"
+import { Suspense } from "react"
 
 
 export async function generateMetadata({
@@ -77,7 +78,9 @@ export default async function ProductListPage({
           </div>
 
           {/* SEARCH BAR (Component) */}
-          <ProductSearch />
+          <Suspense fallback={null}>
+            <ProductSearch />
+          </Suspense>
         </div>
 
         <div className="flex flex-col md:flex-row gap-8">
