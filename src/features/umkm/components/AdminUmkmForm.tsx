@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { umkmSchema, UmkmFormValues } from "@/lib/schemas"
 import { createUmkm, updateUmkm } from "../actions/UmkmActions"
 import { toast } from "sonner"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { generateSlug } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -44,11 +44,29 @@ export function AdminUmkmForm({ categories, onSuccess, initialData }: AdminUmkmF
       description: initialData?.description || "",
       phone: initialData?.phone || "628",
       address: initialData?.address || "",
+      operationalHours: initialData?.operationalHours || "",
       imageUrl: initialData?.imageUrl || "",
       categoryId: initialData?.categoryId || "",
       isActive: initialData?.isActive ?? true,
     }
   })
+
+  // Sync form with initialData changes
+  useEffect(() => {
+    if (initialData) {
+      form.reset({
+        name: initialData.name,
+        slug: initialData.slug,
+        description: initialData.description,
+        phone: initialData.phone,
+        address: initialData.address || "",
+        operationalHours: initialData.operationalHours || "",
+        imageUrl: initialData.imageUrl || "",
+        categoryId: initialData.categoryId,
+        isActive: initialData.isActive,
+      })
+    }
+  }, [initialData, form])
 
   // Helper untuk handle auto slug saat nama diketik
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -167,6 +185,20 @@ export function AdminUmkmForm({ categories, onSuccess, initialData }: AdminUmkmF
               <FormLabel>Alamat Lengkap</FormLabel>
               <FormControl>
                 <Textarea placeholder="Jl. Raya Gunung Putri No..." className="h-20" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="operationalHours"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Jam Operasional</FormLabel>
+              <FormControl>
+                <Textarea placeholder="Contoh: Senin - Minggu (08:00 - 21:00)" className="h-20" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

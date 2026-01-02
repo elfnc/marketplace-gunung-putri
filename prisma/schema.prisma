@@ -93,6 +93,7 @@ model Umkm {
   description String   @db.Text
   address     String?  @db.Text
   phone       String   // Format: 628... (Wajib untuk WA)
+  operationalHours String? // Jam Operasional (Tekstual)
   imageUrl    String?  // Foto Profil/Banner UMKM
   isActive    Boolean  @default(true) // Bisa dimatikan admin kalau bermasalah
   

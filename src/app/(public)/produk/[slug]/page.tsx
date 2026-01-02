@@ -4,18 +4,20 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { getProductBySlug, getRelatedProducts } from "@/features/products/server/getProductDetail"
 import { ProductCard } from "@/features/products/components/ProductCard"
+import { ShareButton } from "@/components/shared/share-button"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { MapPin, ShoppingCart, Store, ArrowLeft } from "lucide-react"
 
 interface PageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 // 1. GENERATE METADATA (SEO WAJIB)
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const product = await getProductBySlug(params.slug)
+  const { slug } = await params
+  const product = await getProductBySlug(slug)
   if (!product) return { title: "Produk Tidak Ditemukan" }
 
   return {
@@ -29,7 +31,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProductDetailPage({ params }: PageProps) {
   // 2. FETCH DATA
-  const product = await getProductBySlug(params.slug)
+  const { slug } = await params
+  const product = await getProductBySlug(slug)
 
   if (!product) {
     notFound() // Akan melempar ke halaman 404 Next.js
@@ -124,11 +127,18 @@ export default async function ProductDetailPage({ params }: PageProps) {
             </div>
 
             {/* ACTIONS DESKTOP */}
-            <div className="hidden md:flex gap-4 pt-4">
+            <div className="hidden md:flex gap-3 pt-4">
               <Button size="lg" className="flex-1 text-base h-12 rounded-xl shadow-lg shadow-primary/10">
                 <ShoppingCart className="mr-2 h-5 w-5" />
                 Tambah ke Keranjang
               </Button>
+              <ShareButton
+                title={product.name}
+                text={`Jual ${product.name} murah di ${product.umkm.name}. Cek sekarang!`}
+                size="lg"
+                className="h-12 w-12 rounded-xl"
+                variant="outline"
+              />
             </div>
           </div>
         </div>
@@ -162,9 +172,13 @@ export default async function ProductDetailPage({ params }: PageProps) {
       {/* MOBILE STICKY BOTTOM BAR (UX WAJIB) */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border md:hidden z-50 pb-6">
         <div className="flex gap-3">
-          <Button variant="outline" size="icon" className="h-12 w-12 rounded-xl border-primary/20 shrink-0">
-            <Store className="h-5 w-5 text-primary" />
-          </Button>
+          <ShareButton
+            title={product.name}
+            text={`Cek produk ${product.name} ini!`}
+            variant="outline"
+            size="icon"
+            className="h-12 w-12 rounded-xl border-primary/20 shrink-0 text-primary"
+          />
           <Button className="w-full h-12 rounded-xl text-base shadow-lg shadow-primary/10" size="lg">
             <ShoppingCart className="mr-2 h-5 w-5" />
             Tambah - {formattedPrice}

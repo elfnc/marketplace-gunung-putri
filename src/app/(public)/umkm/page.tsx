@@ -53,6 +53,7 @@ export default async function UmkmListPage({
                 productCount={umkm._count.products}
                 // Pakai gambar produk pertama sebagai cover/avatar kalau ada
                 coverImage={umkm.products[0]?.imageUrl}
+                operationalHours={umkm.operationalHours}
               />
             ))}
           </div>

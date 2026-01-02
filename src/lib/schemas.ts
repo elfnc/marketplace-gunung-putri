@@ -1,14 +1,15 @@
 import { z } from "zod"
 
 export const umkmSchema = z.object({
-    name: z.string().min(3, "Nama UMKM minimal 3 karakter"),
-    slug: z.string().min(3, "Slug wajib diisi (unik)"),
-    categoryId: z.string().min(1, "Pilih kategori"),
-    description: z.string().min(10, "Deskripsi minimal 10 karakter"),
-    phone: z.string().min(10, "Nomor WA wajib (mis: 628...)").regex(/^62/, "Wajib format 62..."),
-    address: z.string().optional(),
-    imageUrl: z.string().optional(),
-    isActive: z.boolean().default(true),
+  name: z.string().min(3, "Nama UMKM minimal 3 karakter"),
+  slug: z.string().min(3, "Slug wajib diisi (unik)"),
+  categoryId: z.string().min(1, "Pilih kategori"),
+  description: z.string().min(10, "Deskripsi minimal 10 karakter"),
+  phone: z.string().min(10, "Nomor WA wajib (mis: 628...)").regex(/^62/, "Wajib format 62..."),
+  address: z.string().optional(),
+  operationalHours: z.string().optional(),
+  imageUrl: z.string().optional(),
+  isActive: z.boolean().default(true),
 })
 
 

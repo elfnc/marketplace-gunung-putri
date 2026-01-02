@@ -73,9 +73,9 @@
     - [x] Product Image & Info
     - [x] Dynamic Metadata (SEO)
     - [x] "Add to Cart" Button (Connected to Store)
-- [ ] **UMKM Profile (`/umkm/[slug]`):** (Pending/Next Release)
-    - [ ] Header Info (Name, Address)
-    - [ ] Product List per UMKM
+- [x] **UMKM Profile (`/umkm/[slug]`):** (Implementation Refined)
+    - [x] Header Info (Name, Address)
+    - [x] Product List per UMKM
 
 ---
 

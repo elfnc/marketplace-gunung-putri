@@ -34,7 +34,7 @@ export default async function HomePage() {
       <Suspense fallback={<div className="container mx-auto h-24 bg-secondary/20 animate-pulse rounded-xl my-8" />}>
         <SearchCategorySection />
       </Suspense>
-      
+
       {/* 3. PRODUK UNGGULAN */}
       <section className="container mx-auto px-4 py-16 md:px-6 space-y-8">
         <div className="flex items-end justify-between border-b pb-4 border-border">
@@ -72,15 +72,15 @@ export default async function HomePage() {
             ))}
           </div>
         ) : (
-           <div className="text-center py-12 text-muted-foreground bg-secondary/20 rounded-xl border border-dashed">
-             Belum ada produk unggulan saat ini.
-           </div>
+          <div className="text-center py-12 text-muted-foreground bg-secondary/20 rounded-xl border border-dashed">
+            Belum ada produk unggulan saat ini.
+          </div>
         )}
 
         <div className="md:hidden text-center mt-4">
-            <Button variant="outline" className="w-full" asChild>
-                <Link href="/produk">Lihat Semua Produk</Link>
-            </Button>
+          <Button variant="outline" className="w-full" asChild>
+            <Link href="/produk">Lihat Semua Produk</Link>
+          </Button>
         </div>
       </section>
 
@@ -88,39 +88,40 @@ export default async function HomePage() {
       <section className="bg-[#F4F1EC] border-y border-[#E6E3DF] py-16">
         <div className="container mx-auto px-4 md:px-6 space-y-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-             <div className="space-y-1">
-                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[#1C1C1C]">
-                  {COPY.UMKM_SECTION.TITLE}
-                </h2>
-                <p className="text-sm md:text-base text-muted-foreground max-w-xl">
-                  {COPY.UMKM_SECTION.SUBTITLE}
-                </p>
-             </div>
-             <Button variant="outline" className="bg-white border-[#E6E3DF] shadow-sm hover:bg-white/80" asChild>
-                  <Link href="/umkm">{COPY.UMKM_SECTION.CTA_ALL}</Link>
-             </Button>
+            <div className="space-y-1">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[#1C1C1C]">
+                {COPY.UMKM_SECTION.TITLE}
+              </h2>
+              <p className="text-sm md:text-base text-muted-foreground max-w-xl">
+                {COPY.UMKM_SECTION.SUBTITLE}
+              </p>
+            </div>
+            <Button variant="outline" className="bg-white border-[#E6E3DF] shadow-sm hover:bg-white/80" asChild>
+              <Link href="/umkm">{COPY.UMKM_SECTION.CTA_ALL}</Link>
+            </Button>
           </div>
-          
+
           {/* 👇 INI YANG KITA PERBAIKI */}
           {featuredUmkms.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {featuredUmkms.map((umkm) => (
-                    <UmkmCard 
-                        key={umkm.id}
-                        name={umkm.name}
-                        slug={umkm.slug}
-                        category={umkm.category.name}
-                        address={umkm.address}
-                        productCount={umkm._count.products}
-                        // 👇 FIX ERROR: Ganti 'imageUrl' jadi 'coverImage'
-                        // Dan ambil dari array products[0]
-                        coverImage={umkm.products[0]?.imageUrl} 
-                    />
-                ))}
+              {featuredUmkms.map((umkm) => (
+                <UmkmCard
+                  key={umkm.id}
+                  name={umkm.name}
+                  slug={umkm.slug}
+                  category={umkm.category.name}
+                  address={umkm.address}
+                  productCount={umkm._count.products}
+                  // 👇 FIX ERROR: Ganti 'imageUrl' jadi 'coverImage'
+                  // Dan ambil dari array products[0]
+                  coverImage={umkm.products[0]?.imageUrl}
+                  operationalHours={umkm.operationalHours}
+                />
+              ))}
             </div>
           ) : (
             <div className="py-12 text-center opacity-60">
-                <p>Belum ada UMKM yang ditampilkan.</p>
+              <p>Belum ada UMKM yang ditampilkan.</p>
             </div>
           )}
 
