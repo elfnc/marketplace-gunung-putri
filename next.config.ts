@@ -12,11 +12,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "placehold.co", // 👈 Ganti jadi ini
       },
-      // Nanti kalau pakai Supabase Storage, tambahkan ini:
-      // {
-      //   protocol: "https",
-      //   hostname: "namaproject.supabase.co",
-      // },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
     ],
   },
 };

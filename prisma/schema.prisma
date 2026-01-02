@@ -5,7 +5,6 @@ generator client {
 datasource db {
    provider  = "postgresql"
   url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
 }
 
 model Account {
@@ -127,4 +126,21 @@ model Product {
 
   @@index([umkmId])
   @@map("products")
+}
+
+model Event {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String   @unique
+  excerpt   String?  // Cuplikan pendek untuk di card
+  content   String   @db.Text // Isi lengkap (HTML format)
+  imageUrl  String?
+  location  String?
+  startDate DateTime
+  endDate   DateTime?
+  isActive  Boolean  @default(true) // Toggle ON/OFF
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("events")
 }

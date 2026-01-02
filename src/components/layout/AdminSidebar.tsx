@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, Store, Package, LogOut, Settings } from "lucide-react"
+import { LayoutDashboard, Store, Package, LogOut, Settings, Calendar } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { signOut } from "next-auth/react"
@@ -22,6 +22,11 @@ const sidebarItems = [
     title: "Produk",
     href: "/admin/products",
     icon: Package,
+  },
+  {
+    title: "Events",
+    href: "/admin/events",
+    icon: Calendar,
   },
 ]
 

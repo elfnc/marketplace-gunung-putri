@@ -19,6 +19,7 @@ interface ProductCardProps {
   className?: string
   umkmId: string 
   umkmPhone: string
+  umkmSlug?: string // Optional
 }
 
 export function ProductCard({
@@ -33,6 +34,7 @@ export function ProductCard({
   category,
   umkmId,
   umkmPhone,
+  umkmSlug,
   className
 }: ProductCardProps) {
   
@@ -49,10 +51,9 @@ export function ProductCard({
       "group relative flex flex-col h-full overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-primary/30", 
       className
     )}>
-      <Link href={`/produk/${slug}`} className="flex-1 flex flex-col">
-        
-        {/* IMAGE SECTION */}
-        <div className="relative aspect-4/3 sm:aspect-square overflow-hidden bg-secondary/20">
+      
+      {/* 1. IMAGE AREA -> Link ke Produk */}
+      <Link href={`/produk/${slug}`} className="relative aspect-4/3 sm:aspect-square overflow-hidden bg-secondary/20 block">
           {imageUrl ? (
             <Image
               src={imageUrl}
@@ -75,17 +76,28 @@ export function ProductCard({
               {category}
             </Badge>
           </div>
-        </div>
+      </Link>
 
-        {/* CONTENT SECTION (Padding Mobile: p-3, Desktop: p-4) */}
-        <div className="flex flex-col flex-1 p-3 sm:p-4 pb-0 sm:pb-2 space-y-2 sm:space-y-3">
+      {/* 2. CONTENT AREA (Container) */}
+      <div className="flex flex-col flex-1 p-3 sm:p-4 pb-0 sm:pb-2 space-y-2 sm:space-y-3">
           
-          {/* UMKM Info */}
+          {/* UMKM Info -> Link ke Profil UMKM (Jika ada slug) */}
           <div className="flex items-center text-[10px] sm:text-xs text-muted-foreground gap-1.5 leading-none">
-            <div className="flex items-center gap-1 truncate shrink hover:text-primary transition-colors">
-                <Store className="h-3 w-3 shrink-0" />
-                <span className="truncate max-w-20 sm:max-w-none">{umkmName}</span>
-            </div>
+            {umkmSlug ? (
+               <Link 
+                  href={`/umkm/${umkmSlug}`} 
+                  className="flex items-center gap-1 truncate shrink hover:text-primary transition-colors hover:underline decoration-primary/50 z-20"
+               >
+                  <Store className="h-3 w-3 shrink-0" />
+                  <span className="truncate max-w-20 sm:max-w-none font-medium">{umkmName}</span>
+               </Link>
+            ) : (
+               <div className="flex items-center gap-1 truncate shrink">
+                  <Store className="h-3 w-3 shrink-0" />
+                  <span className="truncate max-w-20 sm:max-w-none">{umkmName}</span>
+               </div>
+            )}
+
             {umkmAddress && (
                 <>
                     <span className="text-border">•</span>
@@ -97,29 +109,29 @@ export function ProductCard({
             )}
           </div>
 
-          {/* Product Name */}
-          <div>
-            <h3 className="line-clamp-2 text-xs sm:text-sm font-bold text-[#1C1C1C] leading-tight group-hover:text-[#1F3D2B] transition-colors min-h-[2.5em]">
-                {name}
-            </h3>
-            {/* Deskripsi di-hide di mobile biar ga penuh */}
-            {description && (
-                <p className="hidden sm:block line-clamp-2 text-xs text-muted-foreground mt-1.5 leading-relaxed">
-                    {description}
-                </p>
-            )}
-          </div>
+          {/* Product Info -> Link ke Produk (Sisanya) */}
+          <Link href={`/produk/${slug}`} className="flex flex-col flex-1">
+             <div>
+                <h3 className="line-clamp-2 text-xs sm:text-sm font-bold text-[#1C1C1C] leading-tight group-hover:text-[#1F3D2B] transition-colors min-h-[2.5em]">
+                    {name}
+                </h3>
+                {description && (
+                    <p className="hidden sm:block line-clamp-2 text-xs text-muted-foreground mt-1.5 leading-relaxed">
+                        {description}
+                    </p>
+                )}
+             </div>
 
-          {/* Price */}
-          <div className="mt-auto pt-1 sm:pt-2">
-             <div className="text-sm sm:text-lg font-bold text-[#1F3D2B] tracking-tight">
-                {formattedPrice}
-            </div>
-          </div>
-        </div>
-      </Link>
+             {/* Price */}
+             <div className="mt-auto pt-1 sm:pt-2">
+                <div className="text-sm sm:text-lg font-bold text-[#1F3D2B] tracking-tight">
+                    {formattedPrice}
+                </div>
+             </div>
+          </Link>
+      </div>
 
-      {/* FOOTER ACTION (Padding Mobile: p-3, Desktop: p-4) */}
+      {/* FOOTER ACTION */}
       <div className="p-3 sm:p-4 pt-3 mt-auto">
         <AddToCartButton 
             variant="full"

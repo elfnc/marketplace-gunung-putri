@@ -51,7 +51,7 @@ export default async function AdminProductsPage({
 
   return (
     <div className="space-y-6">
-       {/* HEADER */}
+      {/* HEADER */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Kelola Produk</h1>
@@ -77,11 +77,11 @@ export default async function AdminProductsPage({
       {/* FILTER & SEARCH BAR */}
       <div className="flex flex-col md:flex-row items-center gap-4 bg-white p-2 rounded-sm border shadow-sm">
         <div className="flex-1 w-full">
-            <AdminSearch placeholder="Cari nama produk..." />
+          <AdminSearch placeholder="Cari nama produk..." />
         </div>
         <div className="w-full md:w-auto">
-            {/* Dropdown Filter UMKM */}
-            <AdminProductFilter umkms={umkms} />
+          {/* Dropdown Filter UMKM */}
+          <AdminProductFilter umkms={umkms} />
         </div>
       </div>
 
@@ -108,34 +108,34 @@ export default async function AdminProductsPage({
                   </Avatar>
                 </TableCell>
                 <TableCell className="font-medium text-foreground">
-                    {p.name}
-                    <div className="text-[10px] text-muted-foreground font-normal">{p.slug}</div>
+                  {p.name}
+                  <div className="text-[10px] text-muted-foreground font-normal">{p.slug}</div>
                 </TableCell>
                 <TableCell>
-                    <div className="text-sm text-muted-foreground">{p.umkm.name}</div>
+                  <div className="text-sm text-muted-foreground">{p.umkm.name}</div>
                 </TableCell>
                 <TableCell className="font-mono text-sm font-medium">
-                    {new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(Number(p.price))}
+                  {new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(Number(p.price))}
                 </TableCell>
                 <TableCell>
-                   <StatusBadge isActive={p.isActive} />
+                  <StatusBadge isActive={p.isActive} />
                 </TableCell>
                 <TableCell className="text-right whitespace-nowrap">
-                   {/* Convert Decimal to Number sebelum pass ke Client Component */}
-                   <EditProductButton product={{ ...p, price: Number(p.price) }} umkms={umkms} />
-                   <AlertDeleteBtn id={p.id} action={deleteProduct} label="Produk" />
+                  {/* Convert Decimal to Number sebelum pass ke Client Component */}
+                  <EditProductButton product={{ ...p, price: Number(p.price) }} umkms={umkms} />
+                  <AlertDeleteBtn id={p.id} action={deleteProduct} label="Produk" />
                 </TableCell>
               </TableRow>
             ))}
             {products.length === 0 && (
-                 <TableRow>
-                    <TableCell colSpan={6} className="h-32 text-center text-muted-foreground">
-                        <div className="flex flex-col items-center justify-center">
-                            <Package className="h-8 w-8 mb-2 opacity-20" />
-                            <p>Produk tidak ditemukan.</p>
-                        </div>
-                    </TableCell>
-                </TableRow>
+              <TableRow>
+                <TableCell colSpan={6} className="h-32 text-center text-muted-foreground">
+                  <div className="flex flex-col items-center justify-center">
+                    <Package className="h-8 w-8 mb-2 opacity-20" />
+                    <p>Produk tidak ditemukan.</p>
+                  </div>
+                </TableCell>
+              </TableRow>
             )}
           </TableBody>
         </Table>
@@ -143,10 +143,10 @@ export default async function AdminProductsPage({
 
       {/* PAGINATION CONTROL */}
       <div className="py-4">
-        <PaginationControl 
-            currentPage={page}
-            totalPages={totalPages}
-            hasNextPage={page < totalPages}
+        <PaginationControl
+          currentPage={page}
+          totalPages={totalPages}
+          hasNextPage={page < totalPages}
         />
       </div>
     </div>

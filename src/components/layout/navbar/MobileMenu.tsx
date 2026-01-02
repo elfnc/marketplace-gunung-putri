@@ -30,7 +30,7 @@ export function MobileMenu() {
           <Link href="/umkm" onClick={() => setOpen(false)} className="text-lg font-medium p-2 hover:bg-secondary rounded-md">
             UMKM Lokal
           </Link>
-          <Link href="/event" onClick={() => setOpen(false)} className="text-lg font-medium p-2 hover:bg-secondary rounded-md">
+          <Link href="/events" onClick={() => setOpen(false)} className="text-lg font-medium p-2 hover:bg-secondary rounded-md">
             Event & Bazar
           </Link>
           <Link href="/tentang" onClick={() => setOpen(false)} className="text-lg font-medium p-2 hover:bg-secondary rounded-md">

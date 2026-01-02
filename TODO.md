@@ -121,7 +121,7 @@
 ### Deployment (FINAL BOSS)
 - [x] Environment Variables Check (`.env.production`)
 - [x] Build Check (`npm run build`)
-- [ ] Deploy to Vercel
+- [x] Deploy to Vercel
 - [ ] Domain Setup
 
 ---
