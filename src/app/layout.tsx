@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/providers/queryProvider";
 import { Toaster } from "@/components/ui/sonner";
+import { PwaPrompt } from "@/components/pwa/PwaPrompt";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -11,7 +12,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#1F3D2B",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };
@@ -94,6 +95,7 @@ export default function RootLayout({
       <body className={`${jakarta.variable} antialiased`}>
         <QueryProvider>
           {children}
+          <PwaPrompt />
           <Toaster position="top-center" richColors />
         </QueryProvider>
       </body>
