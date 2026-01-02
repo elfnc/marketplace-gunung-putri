@@ -10,6 +10,13 @@ export const size = {
 export const contentType = 'image/png'
 
 export default async function Image() {
+  // 1. Ambil file logo.svg
+  // Kita fetch dari domain production agar terbaca oleh Edge Runtime
+  // Pastikan file 'logo.svg' sudah ada di folder 'public'
+  const logoData = await fetch(new URL('https://marketplace-gunung-putri.vercel.app/logo.svg')).then(
+    (res) => res.arrayBuffer()
+  )
+
   return new ImageResponse(
     (
       <div
@@ -24,79 +31,91 @@ export default async function Image() {
           position: 'relative',
         }}
       >
-        {/* Background Pattern (Ceritanya Pattern Batik/Abstrak simple) */}
+        {/* Background Pattern (Lingkaran Dekorasi) */}
         <div
-            style={{
-                position: 'absolute',
-                top: -100,
-                left: -100,
-                width: 600,
-                height: 600,
-                borderRadius: '50%',
-                background: '#1F3D2B', // Primary Color
-                opacity: 0.1,
-            }}
+          style={{
+            position: 'absolute',
+            top: -100,
+            left: -100,
+            width: 600,
+            height: 600,
+            borderRadius: '50%',
+            background: '#1F3D2B', // Primary Color
+            opacity: 0.05,
+          }}
         />
-        
         <div
-            style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: 20,
-            }}
+          style={{
+            position: 'absolute',
+            bottom: -100,
+            right: -100,
+            width: 500,
+            height: 500,
+            borderRadius: '50%',
+            background: '#C56A4A', // Accent Color
+            opacity: 0.05,
+          }}
+        />
+
+        {/* Header: Logo + Label */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: 20,
+          }}
         >
-             {/* Logo Icon Simple */}
-             <div 
-                style={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: 12,
-                    background: '#1F3D2B',
-                    marginRight: 20,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    fontSize: 32,
-                    fontWeight: 'bold'
-                }}
-             >
-                GP
-             </div>
-             <div style={{ fontSize: 30, color: '#1F3D2B', fontWeight: 600 }}>
-                MARKETPLACE WARGA
-             </div>
+          {/* Logo Image */}
+          <img
+            src={logoData as any}
+            width="80"
+            height="80"
+            style={{
+              marginRight: 20,
+              objectFit: 'contain'
+            }}
+          />
+
+          <div style={{ fontSize: 32, color: '#1F3D2B', fontWeight: 600, letterSpacing: '-0.02em' }}>
+            MARKETPLACE WARGA
+          </div>
         </div>
 
+        {/* Main Title */}
         <div
           style={{
             fontSize: 70,
             fontStyle: 'normal',
-            fontWeight: 'bold',
+            fontWeight: 800,
             color: '#1C1C1C',
-            lineHeight: 1.1,
+            lineHeight: 1,
             textAlign: 'center',
             marginBottom: 20,
             padding: '0 40px',
+            textTransform: 'uppercase',
+            letterSpacing: '-0.03em',
           }}
         >
           Gunung Putri
         </div>
 
+        {/* Subtitle */}
         <div
           style={{
             fontSize: 30,
-            color: '#666',
+            color: '#555',
             textAlign: 'center',
             maxWidth: 800,
+            fontWeight: 400,
           }}
         >
           Dukung usaha tetangga, belanja lebih dekat.
         </div>
-        
-        {/* Accent Bar */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 16, background: '#C56A4A' }} />
+
+        {/* Accent Bar Bottom */}
+        <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 16, background: '#1F3D2B' }} />
+        <div style={{ position: 'absolute', bottom: 0, left: 0, width: '40%', height: 16, background: '#C56A4A' }} />
       </div>
     ),
     {
