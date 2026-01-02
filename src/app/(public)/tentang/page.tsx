@@ -3,6 +3,8 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Heart, ShieldCheck, MapPin, Zap, Coffee } from "lucide-react"
 import { COPY } from "@/lib/copywritting" // 👈 Import Config
+import { Motion } from "@/components/shared/Motion"
+import { fadeInUp, scaleIn, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations"
 
 export const metadata: Metadata = {
     title: "Tentang Platform - Marketplace Gunung Putri",
@@ -19,24 +21,35 @@ export default function AboutPage() {
         <div className="min-h-screen bg-[#F4F1EC]">
 
             {/* SECTION 1: THE REALITY (Problem) */}
-            <section className="container mx-auto px-4 py-16 md:py-24 max-w-4xl text-center">
-                <h1 className="text-3xl md:text-5xl font-extrabold text-[#1F3D2B] mb-8 tracking-tight whitespace-pre-line">
+            <Motion
+                className="container mx-auto px-4 py-16 md:py-24 max-w-4xl text-center"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={staggerContainer}
+            >
+                <Motion variants={fadeInUp} as="h1" className="text-3xl md:text-5xl font-extrabold text-[#1F3D2B] mb-8 tracking-tight whitespace-pre-line">
                     {content.HEADLINE}
-                </h1>
+                </Motion>
                 <div className="prose prose-lg mx-auto text-muted-foreground leading-relaxed space-y-4">
                     {content.PROBLEM_PARAGRAPHS.map((paragraph, idx) => (
-                        <p key={idx} className={idx === content.PROBLEM_PARAGRAPHS.length - 1 ? "font-medium text-[#1C1C1C]" : ""}>
+                        <Motion key={idx} variants={fadeInUp} as="p" className={idx === content.PROBLEM_PARAGRAPHS.length - 1 ? "font-medium text-[#1C1C1C]" : ""}>
                             {paragraph}
-                        </p>
+                        </Motion>
                     ))}
                 </div>
-            </section>
+            </Motion>
 
             {/* SECTION 2: THE SOLUTION (Values) */}
-            <section className="bg-white py-16 border-y border-[#E6E3DF]">
+            <section className="bg-white py-16 border-y border-[#E6E3DF] overflow-hidden">
                 <div className="container mx-auto px-4 max-w-5xl">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                        <div>
+                        <Motion
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-100px" }}
+                            variants={slideInLeft}
+                        >
                             <h2 className="text-2xl md:text-3xl font-bold text-[#1F3D2B] mb-4">
                                 {content.SOLUTION_TITLE}
                             </h2>
@@ -59,10 +72,16 @@ export default function AboutPage() {
                                     )
                                 })}
                             </ul>
-                        </div>
+                        </Motion>
 
                         {/* Visual/Image Placeholder */}
-                        <div className="relative h-80 bg-[#1F3D2B]/5 rounded-2xl flex items-center justify-center border border-dashed border-[#1F3D2B]/20">
+                        <Motion
+                            className="relative h-80 bg-[#1F3D2B]/5 rounded-2xl flex items-center justify-center border border-dashed border-[#1F3D2B]/20"
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-100px" }}
+                            variants={slideInRight}
+                        >
                             <div className="text-center p-6">
                                 <Heart className="h-16 w-16 text-[#C56A4A] mx-auto mb-4 opacity-80" />
                                 <h3 className="text-xl font-bold text-[#1F3D2B]">Dibuat dengan ❤️</h3>
@@ -70,14 +89,20 @@ export default function AboutPage() {
                                     Inisiatif kecil untuk dampak yang (semoga) besar.
                                 </p>
                             </div>
-                        </div>
+                        </Motion>
                     </div>
                 </div>
             </section>
 
             {/* SECTION 3: BUILD IN PUBLIC (Transparansi) */}
             <section className="container mx-auto px-4 py-16 max-w-3xl text-center">
-                <div className="bg-[#1F3D2B] text-white rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-xl">
+                <Motion
+                    className="bg-[#1F3D2B] text-white rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-xl"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={scaleIn}
+                >
                     <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
 
                     <div className="relative z-10">
@@ -103,7 +128,7 @@ export default function AboutPage() {
                             </Button>
                         </div>
                     </div>
-                </div>
+                </Motion>
             </section>
 
         </div>

@@ -1,6 +1,8 @@
 import { EventCard } from "@/features/events/components/EventCard"
 import { prisma } from "@/lib/prisma"
 import { Metadata } from "next"
+import { Motion } from "@/components/shared/Motion"
+import { fadeIn, staggerContainer, scaleIn } from "@/lib/animations"
 
 export const metadata: Metadata = {
     title: "Kabar Warga & Event - Marketplace Gunung Putri",
@@ -19,7 +21,12 @@ export default async function PublicEventsPage() {
         <div className="min-h-screen bg-[#F4F1EC] pb-20">
 
             {/* HERO HEADER (Full Width) */}
-            <div className="bg-[#1F3D2B] text-white py-16 md:py-24 relative overflow-hidden">
+            <Motion
+                className="bg-[#1F3D2B] text-white py-16 md:py-24 relative overflow-hidden"
+                initial="hidden"
+                animate="visible"
+                variants={fadeIn}
+            >
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]" />
 
                 {/* Container Manual */}
@@ -34,25 +41,31 @@ export default async function PublicEventsPage() {
                         Jangan lewatkan kegiatan seru, pengumuman penting, dan cerita inspiratif dari tetangga sekitar.
                     </p>
                 </div>
-            </div>
+            </Motion>
 
             {/* EVENT GRID */}
             {/* Container Manual */}
             <div className="container mx-auto px-4 md:px-6 -mt-12 relative z-20">
                 {events.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <Motion
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+                        initial="hidden"
+                        animate="visible"
+                        variants={staggerContainer}
+                    >
                         {events.map((event) => (
-                            <EventCard
-                                key={event.id}
-                                title={event.title}
-                                slug={event.slug}
-                                excerpt={event.excerpt}
-                                imageUrl={event.imageUrl}
-                                startDate={event.startDate}
-                                location={event.location}
-                            />
+                            <Motion key={event.id} variants={scaleIn} as="div">
+                                <EventCard
+                                    title={event.title}
+                                    slug={event.slug}
+                                    excerpt={event.excerpt}
+                                    imageUrl={event.imageUrl}
+                                    startDate={event.startDate}
+                                    location={event.location}
+                                />
+                            </Motion>
                         ))}
-                    </div>
+                    </Motion>
                 ) : (
                     <div className="bg-white rounded-2xl shadow-sm p-12 text-center border border-dashed border-border max-w-2xl mx-auto">
                         <div className="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">

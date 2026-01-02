@@ -1,4 +1,6 @@
 import { Metadata } from "next"
+import { Motion } from "@/components/shared/Motion"
+import { fadeIn } from "@/lib/animations"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -47,7 +49,12 @@ export default async function ProductDetailPage({ params }: PageProps) {
   }).format(Number(product.price))
 
   return (
-    <div className="min-h-screen pb-24 md:pb-12">
+    <Motion
+      className="min-h-screen pb-24 md:pb-12"
+      initial="hidden"
+      animate="visible"
+      variants={fadeIn}
+    >
       {/* Breadcrumb Simple */}
       <div className="container mx-auto px-4 py-4">
         <Button variant="ghost" size="sm" asChild className="text-muted-foreground pl-0 hover:text-primary">
@@ -185,6 +192,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </Button>
         </div>
       </div>
-    </div>
+    </Motion>
   )
 }

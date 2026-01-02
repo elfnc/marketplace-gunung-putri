@@ -7,6 +7,8 @@ import { getUmkms } from "@/features/umkm/server/getUmkm"
 import { ProductSearch } from "@/features/products/components/ProductSearch"
 import { UmkmCard } from "@/features/umkm/components/UmkmCard"
 import { PublicPageContainer } from "@/components/layout/PublicPageContainer"
+import { Motion } from "@/components/shared/Motion"
+import { staggerContainer, scaleIn } from "@/lib/animations"
 
 export const metadata: Metadata = {
   title: "Daftar UMKM - Marketplace Gunung Putri",
@@ -42,21 +44,26 @@ export default async function UmkmListPage({
       {/* GRID UMKM */}
       {umkms.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <Motion
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+          >
             {umkms.map((umkm) => (
-              <UmkmCard
-                key={umkm.id}
-                name={umkm.name}
-                slug={umkm.slug}
-                category={umkm.category.name}
-                address={umkm.address}
-                productCount={umkm._count.products}
-                // Pakai gambar produk pertama sebagai cover/avatar kalau ada
-                coverImage={umkm.products[0]?.imageUrl}
-                operationalHours={umkm.operationalHours}
-              />
+              <Motion key={umkm.id} variants={scaleIn} as="div">
+                <UmkmCard
+                  name={umkm.name}
+                  slug={umkm.slug}
+                  category={umkm.category.name}
+                  address={umkm.address}
+                  productCount={umkm._count.products}
+                  coverImage={umkm.products[0]?.imageUrl}
+                  operationalHours={umkm.operationalHours}
+                />
+              </Motion>
             ))}
-          </div>
+          </Motion>
 
           <PaginationControl
             currentPage={currentPage}

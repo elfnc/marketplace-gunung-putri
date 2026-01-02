@@ -10,6 +10,8 @@ import { ProductCard } from "@/features/products/components/ProductCard"
 import { UmkmCard } from "@/features/umkm/components/UmkmCard"
 import { CtaRegister } from "@/features/home/components/CtaJoin"
 import { SupportSection } from "@/features/home/components/SupportSection"
+import { Motion } from "@/components/shared/Motion"
+import { staggerContainer, fadeIn, scaleIn } from "@/lib/animations"
 
 
 const ACTIVE_EVENT = {
@@ -52,25 +54,32 @@ export default async function HomePage() {
         </div>
 
         {products.length > 0 ? (
-          <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-4">
+          <Motion
+            className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
             {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                slug={product.slug}
-                price={Number(product.price)}
-                imageUrl={product.imageUrl}
-                umkmName={product.umkm.name}
-                category={product.umkm.category.name}
-                umkmId={product.umkm.id}
-                umkmPhone={product.umkm.phone}
-                umkmSlug={product.umkm.slug} // ✅ Pass slug buat link ke profil
-                description={product.description}
-                umkmAddress={product.umkm.address}
-              />
+              <Motion key={product.id} variants={fadeIn} as="div">
+                <ProductCard
+                  id={product.id}
+                  name={product.name}
+                  slug={product.slug}
+                  price={Number(product.price)}
+                  imageUrl={product.imageUrl}
+                  umkmName={product.umkm.name}
+                  category={product.umkm.category.name}
+                  umkmId={product.umkm.id}
+                  umkmPhone={product.umkm.phone}
+                  umkmSlug={product.umkm.slug}
+                  description={product.description}
+                  umkmAddress={product.umkm.address}
+                />
+              </Motion>
             ))}
-          </div>
+          </Motion>
         ) : (
           <div className="text-center py-12 text-muted-foreground bg-secondary/20 rounded-xl border border-dashed">
             Belum ada produk unggulan saat ini.
@@ -103,22 +112,27 @@ export default async function HomePage() {
 
           {/* 👇 INI YANG KITA PERBAIKI */}
           {featuredUmkms.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <Motion
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
+            >
               {featuredUmkms.map((umkm) => (
-                <UmkmCard
-                  key={umkm.id}
-                  name={umkm.name}
-                  slug={umkm.slug}
-                  category={umkm.category.name}
-                  address={umkm.address}
-                  productCount={umkm._count.products}
-                  // 👇 FIX ERROR: Ganti 'imageUrl' jadi 'coverImage'
-                  // Dan ambil dari array products[0]
-                  coverImage={umkm.products[0]?.imageUrl}
-                  operationalHours={umkm.operationalHours}
-                />
+                <Motion key={umkm.id} variants={scaleIn} as="div">
+                  <UmkmCard
+                    name={umkm.name}
+                    slug={umkm.slug}
+                    category={umkm.category.name}
+                    address={umkm.address}
+                    productCount={umkm._count.products}
+                    coverImage={umkm.products[0]?.imageUrl}
+                    operationalHours={umkm.operationalHours}
+                  />
+                </Motion>
               ))}
-            </div>
+            </Motion>
           ) : (
             <div className="py-12 text-center opacity-60">
               <p>Belum ada UMKM yang ditampilkan.</p>

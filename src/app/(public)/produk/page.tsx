@@ -11,6 +11,8 @@ import { FilterSidebar } from "@/features/products/components/FilterSidebar"
 import { ProductCard } from "@/features/products/components/ProductCard"
 import { Suspense } from "react"
 import { PublicPageContainer } from "@/components/layout/PublicPageContainer"
+import { Motion } from "@/components/shared/Motion"
+import { staggerContainer, fadeInUp } from "@/lib/animations"
 
 
 export async function generateMetadata({
@@ -102,24 +104,30 @@ export default async function ProductListPage({
         <main className="flex-1">
           {products.length > 0 ? (
             <>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+              <Motion
+                className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4"
+                initial="hidden"
+                animate="visible"
+                variants={staggerContainer}
+              >
                 {products.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    id={product.id}
-                    name={product.name}
-                    slug={product.slug}
-                    price={Number(product.price)}
-                    imageUrl={product.imageUrl}
-                    umkmName={product.umkm.name}
-                    category={product.umkm.category.name}
-                    description={product.description}
-                    umkmAddress={product.umkm.address}
-                    umkmId={product.umkmId}
-                    umkmPhone={product.umkm.phone}
-                  />
+                  <Motion key={product.id} variants={fadeInUp} as="div">
+                    <ProductCard
+                      id={product.id}
+                      name={product.name}
+                      slug={product.slug}
+                      price={Number(product.price)}
+                      imageUrl={product.imageUrl}
+                      umkmName={product.umkm.name}
+                      category={product.umkm.category.name}
+                      description={product.description}
+                      umkmAddress={product.umkm.address}
+                      umkmId={product.umkmId}
+                      umkmPhone={product.umkm.phone}
+                    />
+                  </Motion>
                 ))}
-              </div>
+              </Motion>
 
               <div className="mt-12 border-t pt-8">
                 <PaginationControl

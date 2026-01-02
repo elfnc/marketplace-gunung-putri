@@ -5,6 +5,8 @@ import { ArrowRight, Store, MapPin } from "lucide-react"
 import { COPY } from "@/lib/copywritting"
 import { getWhatsAppLink } from "@/lib/utils" // Sesuaikan path jika beda
 import { Badge } from "@/components/ui/badge"
+import { Motion } from "@/components/shared/Motion"
+import { fadeInUp, slideInRight } from "@/lib/animations"
 
 interface HeroProduct {
   id: string
@@ -32,7 +34,12 @@ export function HeroSection({ products }: HeroSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center h-full py-16 lg:py-0">
 
           {/* KIRI: CONTENT */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 animate-in fade-in slide-in-from-bottom-6 duration-700">
+          <Motion
+            className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8"
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+          >
 
             <Badge variant="secondary" className="px-4 py-1.5 rounded-full text-[#1F3D2B] bg-[#1F3D2B]/10 hover:bg-[#1F3D2B]/20 transition-colors">
               <MapPin className="w-3.5 h-3.5 mr-1.5" />
@@ -72,10 +79,15 @@ export function HeroSection({ products }: HeroSectionProps) {
                 </Link>
               </Button>
             </div>
-          </div>
+          </Motion>
 
           {/* KANAN: SINGLE FRAME VISUAL */}
-          <div className="hidden lg:flex justify-center items-center relative">
+          <Motion
+            className="hidden lg:flex justify-center items-center relative"
+            initial="hidden"
+            animate="visible"
+            variants={slideInRight}
+          >
             <div className="absolute inset-0 bg-gradient-to-tr from-[#1F3D2B]/10 to-transparent rounded-[2.5rem] blur-2xl transform scale-95 translate-y-4 -z-10" />
 
             <div className="relative w-full max-w-125 aspect-square rounded-[2.5rem] overflow-hidden border-8 border-white shadow-2xl bg-white">
@@ -119,10 +131,10 @@ export function HeroSection({ products }: HeroSectionProps) {
               </div>
 
             </div>
-          </div>
+          </Motion>
 
         </div>
       </div>
-    </section>
+    </section >
   )
 }

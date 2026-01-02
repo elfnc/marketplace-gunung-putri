@@ -1,4 +1,6 @@
 import { Metadata } from "next"
+import { Motion } from "@/components/shared/Motion"
+import { fadeIn } from "@/lib/animations"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -31,7 +33,12 @@ export default async function UmkmProfilePage({ params }: { params: Promise<{ sl
     }
 
     return (
-        <div className="min-h-screen bg-[#F4F1EC]">
+        <Motion
+            className="min-h-screen bg-[#F4F1EC]"
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+        >
 
             {/* 1. HEADER PROFILE */}
             <div className="bg-white border-b border-border">
@@ -143,6 +150,6 @@ export default async function UmkmProfilePage({ params }: { params: Promise<{ sl
                 )}
             </div>
 
-        </div>
+        </Motion>
     )
 }
