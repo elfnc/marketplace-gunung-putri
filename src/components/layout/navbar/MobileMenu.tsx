@@ -15,7 +15,7 @@ export function MobileMenu() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden -ml-2">
+        <Button variant="ghost" size="icon" className="md:hidden -ml-2" aria-label="Buka Menu">
           <Menu className="h-6 w-6 text-[#1C1C1C]" />
         </Button>
       </SheetTrigger>
@@ -36,12 +36,12 @@ export function MobileMenu() {
           <Link href="/tentang" onClick={() => setOpen(false)} className="text-lg font-medium p-2 hover:bg-secondary rounded-md">
             Tentang Kami
           </Link>
-          
+
           <div className="mt-4 pt-4 border-t">
             <Button className="w-full bg-[#1F3D2B] hover:bg-[#1F3D2B]/90" asChild>
-                <Link href={getWhatsAppLink(COPY.WA_TEMPLATE.REGISTER)} target="_blank">
-        Daftarkan UMKM
-    </Link>
+              <Link href={getWhatsAppLink(COPY.WA_TEMPLATE.REGISTER)} target="_blank">
+                Daftarkan UMKM
+              </Link>
             </Button>
           </div>
         </div>

@@ -14,7 +14,6 @@ export const viewport: Viewport = {
   themeColor: "#1F3D2B",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
 };
 
 export const metadata: Metadata = {
@@ -57,26 +56,17 @@ export const metadata: Metadata = {
 
   openGraph: {
     title: "Marketplace UMKM Gunung Putri",
-    description: "Cari tetangga yang jualan? Cek di sini. Tanpa install aplikasi, langsung WA.",
+    description: "Belanja produk tetangga lebih mudah. Langsung WA penjual.",
     url: 'https://marketplace-gunung-putri.vercel.app',
     siteName: 'Marketplace Gunung Putri',
     locale: 'id_ID',
     type: 'website',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Marketplace UMKM Gunung Putri Preview',
-      },
-    ],
   },
 
   twitter: {
     card: 'summary_large_image',
     title: "Marketplace UMKM Gunung Putri",
-    description: "Dukung usaha lokal tetangga. Belanja lebih dekat.",
-    images: ['/og-image.png'],
+    description: "Dukung usaha lokal tetangga.",
   },
 
   icons: {

@@ -63,6 +63,7 @@ export function ShareButton({
             size={size}
             onClick={handleShare}
             className={className}
+            aria-label="Bagikan ke Social Media"
         >
             {copied ? (
                 <Check className="h-4 w-4 mr-2" />

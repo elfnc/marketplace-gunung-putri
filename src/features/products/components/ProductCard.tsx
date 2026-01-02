@@ -13,11 +13,11 @@ interface ProductCardProps {
   price: number
   imageUrl?: string | null
   umkmName: string
-  umkmAddress?: string | null 
+  umkmAddress?: string | null
   description?: string | null
   category: string
   className?: string
-  umkmId: string 
+  umkmId: string
   umkmPhone: string
   umkmSlug?: string // Optional
 }
@@ -29,7 +29,7 @@ export function ProductCard({
   price,
   imageUrl,
   umkmName,
-  umkmAddress, 
+  umkmAddress,
   description,
   category,
   umkmId,
@@ -37,7 +37,7 @@ export function ProductCard({
   umkmSlug,
   className
 }: ProductCardProps) {
-  
+
   const formattedPrice = new Intl.NumberFormat("id-ID", {
     style: "currency",
     currency: "IDR",
@@ -48,102 +48,102 @@ export function ProductCard({
 
   return (
     <Card className={cn(
-      "group relative flex flex-col h-full overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-primary/30", 
+      "group relative flex flex-col h-full overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-primary/30",
       className
     )}>
-      
-      {/* 1. IMAGE AREA -> Link ke Produk */}
-      <Link href={`/produk/${slug}`} className="relative aspect-4/3 sm:aspect-square overflow-hidden bg-secondary/20 block">
-          {imageUrl ? (
-            <Image
-              src={imageUrl}
-              alt={name}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center text-muted-foreground bg-secondary/30">
-              <PackageIcon className="h-10 w-10 opacity-20" />
-            </div>
-          )}
 
-          <div className="absolute left-2 top-2 sm:left-3 sm:top-3 z-10">
-            <Badge 
-              variant="secondary" 
-              className="bg-white/90 backdrop-blur-md text-[#1F3D2B] font-medium text-[10px] px-2 py-0.5 shadow-sm"
-            >
-              {category}
-            </Badge>
+      {/* 1. IMAGE AREA -> Link ke Produk */}
+      <Link href={`/produk/${slug}`} className="relative aspect-4/3 sm:aspect-square overflow-hidden bg-secondary/20 block" aria-label={`Lihat detail produk ${name}`}>
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={name}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center text-muted-foreground bg-secondary/30">
+            <PackageIcon className="h-10 w-10 opacity-20" />
           </div>
+        )}
+
+        <div className="absolute left-2 top-2 sm:left-3 sm:top-3 z-10">
+          <Badge
+            variant="secondary"
+            className="bg-white/90 backdrop-blur-md text-[#1F3D2B] font-medium text-[10px] px-2 py-0.5 shadow-sm"
+          >
+            {category}
+          </Badge>
+        </div>
       </Link>
 
       {/* 2. CONTENT AREA (Container) */}
       <div className="flex flex-col flex-1 p-3 sm:p-4 pb-0 sm:pb-2 space-y-2 sm:space-y-3">
-          
-          {/* UMKM Info -> Link ke Profil UMKM (Jika ada slug) */}
-          <div className="flex items-center text-[10px] sm:text-xs text-muted-foreground gap-1.5 leading-none">
-            {umkmSlug ? (
-               <Link 
-                  href={`/umkm/${umkmSlug}`} 
-                  className="flex items-center gap-1 truncate shrink hover:text-primary transition-colors hover:underline decoration-primary/50 z-20"
-               >
-                  <Store className="h-3 w-3 shrink-0" />
-                  <span className="truncate max-w-20 sm:max-w-none font-medium">{umkmName}</span>
-               </Link>
-            ) : (
-               <div className="flex items-center gap-1 truncate shrink">
-                  <Store className="h-3 w-3 shrink-0" />
-                  <span className="truncate max-w-20 sm:max-w-none">{umkmName}</span>
-               </div>
-            )}
 
-            {umkmAddress && (
-                <>
-                    <span className="text-border">•</span>
-                    <div className="hidden sm:flex items-center gap-1 truncate shrink-0 text-muted-foreground/80">
-                        <MapPin className="h-3 w-3 shrink-0" />
-                        <span className="truncate max-w-24">{shortAddress}</span>
-                    </div>
-                </>
+        {/* UMKM Info -> Link ke Profil UMKM (Jika ada slug) */}
+        <div className="flex items-center text-[10px] sm:text-xs text-muted-foreground gap-1.5 leading-none">
+          {umkmSlug ? (
+            <Link
+              href={`/umkm/${umkmSlug}`}
+              className="flex items-center gap-1 truncate shrink hover:text-primary transition-colors hover:underline decoration-primary/50 z-20"
+            >
+              <Store className="h-3 w-3 shrink-0" />
+              <span className="truncate max-w-20 sm:max-w-none font-medium">{umkmName}</span>
+            </Link>
+          ) : (
+            <div className="flex items-center gap-1 truncate shrink">
+              <Store className="h-3 w-3 shrink-0" />
+              <span className="truncate max-w-20 sm:max-w-none">{umkmName}</span>
+            </div>
+          )}
+
+          {umkmAddress && (
+            <>
+              <span className="text-border">•</span>
+              <div className="hidden sm:flex items-center gap-1 truncate shrink-0 text-muted-foreground/80">
+                <MapPin className="h-3 w-3 shrink-0" />
+                <span className="truncate max-w-24">{shortAddress}</span>
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Product Info -> Link ke Produk (Sisanya) */}
+        <Link href={`/produk/${slug}`} className="flex flex-col flex-1">
+          <div>
+            <h3 className="line-clamp-2 text-xs sm:text-sm font-bold text-[#1C1C1C] leading-tight group-hover:text-[#1F3D2B] transition-colors min-h-[2.5em]">
+              {name}
+            </h3>
+            {description && (
+              <p className="hidden sm:block line-clamp-2 text-xs text-muted-foreground mt-1.5 leading-relaxed">
+                {description}
+              </p>
             )}
           </div>
 
-          {/* Product Info -> Link ke Produk (Sisanya) */}
-          <Link href={`/produk/${slug}`} className="flex flex-col flex-1">
-             <div>
-                <h3 className="line-clamp-2 text-xs sm:text-sm font-bold text-[#1C1C1C] leading-tight group-hover:text-[#1F3D2B] transition-colors min-h-[2.5em]">
-                    {name}
-                </h3>
-                {description && (
-                    <p className="hidden sm:block line-clamp-2 text-xs text-muted-foreground mt-1.5 leading-relaxed">
-                        {description}
-                    </p>
-                )}
-             </div>
-
-             {/* Price */}
-             <div className="mt-auto pt-1 sm:pt-2">
-                <div className="text-sm sm:text-lg font-bold text-[#1F3D2B] tracking-tight">
-                    {formattedPrice}
-                </div>
-             </div>
-          </Link>
+          {/* Price */}
+          <div className="mt-auto pt-1 sm:pt-2">
+            <div className="text-sm sm:text-lg font-bold text-[#1F3D2B] tracking-tight">
+              {formattedPrice}
+            </div>
+          </div>
+        </Link>
       </div>
 
       {/* FOOTER ACTION */}
       <div className="p-3 sm:p-4 pt-3 mt-auto">
-        <AddToCartButton 
-            variant="full"
-            product={{
-                id,
-                name,
-                price,
-                imageUrl,
-                umkmId,
-                umkmName,
-                umkmPhone
-            }}
+        <AddToCartButton
+          variant="full"
+          product={{
+            id,
+            name,
+            price,
+            imageUrl,
+            umkmId,
+            umkmName,
+            umkmPhone
+          }}
         />
       </div>
     </Card>
