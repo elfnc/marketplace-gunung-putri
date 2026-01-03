@@ -101,7 +101,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body className={`${jakarta.variable} antialiased`}>
+      <body className={`${jakarta.variable} font-sans antialiased`}>
         <QueryProvider>
           {children}
           <PwaPrompt />
