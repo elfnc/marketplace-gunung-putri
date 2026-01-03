@@ -1,14 +1,15 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Share2, Check, Copy } from "lucide-react"
+import { Share2, Check } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
+import { cn } from "@/lib/utils"
 
 interface ShareButtonProps {
     title: string
     text?: string
-    url?: string // Kalau kosong, pakai current URL
+    url?: string
     className?: string
     variant?: "outline" | "ghost" | "default" | "secondary"
     size?: "default" | "sm" | "lg" | "icon"
@@ -23,12 +24,13 @@ export function ShareButton({
     size = "default"
 }: ShareButtonProps) {
     const [copied, setCopied] = useState(false)
+    const isIconOnly = size === "icon"
 
     const handleShare = async () => {
         const shareUrl = url || window.location.href
         const shareData = {
             title: title,
-            text: text || `Cek ${title} di Marketplace Gunung Putri!`,
+            text: text || `Cek ${title} di DekatRumah!`,
             url: shareUrl,
         }
 
@@ -38,17 +40,15 @@ export function ShareButton({
                 await navigator.share(shareData)
                 return
             } catch (err) {
-                // User cancel share, ignore
                 console.log("Share cancelled")
             }
         }
 
-        // 2. Fallback: Copy to Clipboard (Desktop)
         try {
             await navigator.clipboard.writeText(shareUrl)
             setCopied(true)
             toast.success("Link berhasil disalin!", {
-                description: "Siap dibagikan ke grup WA tetangga."
+                description: "Siap dibagikan ke teman atau keluarga."
             })
 
             setTimeout(() => setCopied(false), 2000)
@@ -63,14 +63,15 @@ export function ShareButton({
             size={size}
             onClick={handleShare}
             className={className}
-            aria-label="Bagikan ke Social Media"
+            aria-label="Bagikan"
         >
             {copied ? (
-                <Check className="h-4 w-4 mr-2" />
+                <Check className={cn("h-4 w-4", !isIconOnly && "mr-2")} />
             ) : (
-                <Share2 className="h-4 w-4 mr-2" />
+                <Share2 className={cn("h-4 w-4", !isIconOnly && "mr-2")} />
             )}
-            {size !== "icon" && (copied ? "Disalin" : "Bagikan")}
+
+            {!isIconOnly && (copied ? "Disalin" : "Bagikan")}
         </Button>
     )
 }
