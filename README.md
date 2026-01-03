@@ -1,57 +1,64 @@
-# 🛒 Marketplace UMKM Gunung Putri
+# 🏠 DekatRumah
 
-> **"Local, Trustable, Calm Commerce."**
-> Platform digital untuk menghubungkan warga Gunung Putri dengan UMKM sekitar. Tanpa aplikasi ribet, langsung pesan via WhatsApp.
+> **"Usaha dekat rumah, lebih gampang dicari."**
+> Direktori digital untuk menghubungkan warga Gunung Putri dengan usaha dan jasa di sekitarnya. Tanpa aplikasi ribet, langsung hubungi via WhatsApp.
+
+---
 
 ## 📖 Tentang Project
 
-Project ini dibangun sebagai inisiatif mandiri (*indie hacking*) untuk mendigitalkan UMKM lokal di kecamatan Gunung Putri, Bogor. Tujuannya sederhana: **Memudahkan warga mencari produk tetangga sendiri.**
+**DekatRumah** (sebelumnya *Marketplace GP*) adalah inisiatif mandiri untuk mendigitalkan potensi ekonomi warga di kecamatan Gunung Putri, Bogor. 
 
-Berbeda dengan marketplace raksasa, platform ini:
+Platform ini berfungsi sebagai **jembatan digital** agar usaha rumahan, jasa servis, hingga kuliner tetangga lebih mudah ditemukan, terdokumentasi rapi, dan bisa dihubungi langsung tanpa perantara.
 
-* **Tanpa Potongan Admin:** Transaksi 100% milik pedagang.
-* **Tanpa Login User:** Pembeli tinggal pilih barang -> Checkout -> Terhubung ke WhatsApp Penjual.
-* **Fokus Komunitas:** Dilengkapi fitur Event & Kabar Warga.
+**Status Project:** Internal / Closed Beta.
+*Saat ini platform dikelola secara mandiri. Pendaftaran usaha dilakukan melalui kurasi admin untuk menjaga validitas data warga.*
+
+### Kenapa DekatRumah?
+* **Tanpa Potongan:** Transaksi 100% milik pedagang (Direct to WhatsApp).
+* **Tanpa Akun/Login:** Warga tinggal cari -> Klik -> Chat Penjual.
+* **Hyper-Local:** Fokus pada radius lingkungan sekitar (Gunung Putri & sekitarnya).
+* **Progressive Web App (PWA):** Bisa diinstall di HP, hemat kuota, dan performa tinggi.
+
+---
 
 ## 🛠️ Tech Stack
 
-Platform ini dibangun dengan teknologi modern untuk performa tinggi dan skalabilitas (siap menahan ribuan request).
+Dibangun dengan teknologi modern ("Bleeding Edge") untuk performa maksimal dan *Developer Experience* terbaik.
 
-* **Framework:** [Next.js 14](https://nextjs.org/) (App Router)
+* **Framework:** [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
 * **Language:** TypeScript
 * **Styling:** Tailwind CSS v4 + [Shadcn/ui](https://ui.shadcn.com/)
-* **Database:** PostgreSQL (via [Prisma ORM](https://www.prisma.io/))
-* **Auth:** NextAuth.js (Admin Only)
-* **State Management:** Zustand (Shopping Cart)
-* **Image Storage:** Cloudinary
-* **Testing:** Jest (Unit) & k6 (Load Testing)
+* **Animation:** Framer Motion (Page Transitions & Scroll Reveal)
+* **Database:** PostgreSQL (via Prisma ORM)
+* **Auth:** NextAuth.js (Admin Whitelist Only)
+* **PWA:** @ducanh2912/next-pwa
+* **Storage:** Cloudinary
+
+---
 
 ## ✨ Fitur Utama
 
-### 🛍️ Public (User)
+### 🏘️ Public (Warga)
+* **Direktori Usaha:** Cari jajanan, katering, laundry, atau tukang AC di sekitar rumah.
+* **Filter Kategori:** Navigasi mudah (Makanan, Jasa, Fashion, dll).
+* **WhatsApp Integration:** Tombol "Hubungi" langsung membuka chat WA dengan format pesan otomatis.
+* **Info Warga:** Portal informasi event bazar, kerja bakti, atau pengajian.
+* **PWA Installable:** Prompt install otomatis untuk Android & panduan manual untuk iOS.
 
-* **Katalog Produk:** Pencarian instan, filter kategori, dan pagination.
-* **Direktori UMKM:** Profil lengkap usaha warga (Alamat, Kontak, Etalase).
-* **Smart Cart:** Keranjang belanja yang otomatis mengelompokkan barang berdasarkan toko (Split Order).
-* **WhatsApp Checkout Engine:** Generate pesan otomatis: *"Halo, saya mau pesan [Barang A, Barang B]..."*
-* **Kabar Warga:** Portal berita/event lokal.
+### 🔐 Admin (Internal)
+* **Dashboard:** Monitor statistik usaha dan produk.
+* **Management (CRUD):** Kelola data Usaha, Produk, Kategori, dan Event.
+* **Image Upload:** Upload foto produk praktis terintegrasi Cloudinary.
 
-### 🔐 Admin (CMS)
-
-* **Dashboard Analytics:** Monitor total produk, UMKM aktif, dan traffic.
-* **Manajemen Data:** CRUD Produk, UMKM, dan Event.
-* **Image Upload:** Integrasi langsung ke Cloudinary.
-* **Rich Text Editor:** Menulis konten berita dengan Tiptap Editor.
+---
 
 ## 🚀 Cara Menjalankan (Local Development)
 
-Ikuti langkah ini untuk menjalankan project di laptop kamu.
-
 ### 1. Clone Repository
-
 ```bash
-git clone https://github.com/username/marketplace-gp.git
-cd marketplace-gp
+git clone [https://github.com/elfnc/dekat-rumah.git](https://github.com/elfnc/dekat-rumah.git)
+cd dekat-rumah
 
 ```
 
@@ -64,37 +71,29 @@ npm install
 
 ### 3. Setup Environment Variables
 
-Buat file `.env` di root folder, lalu copy konfigurasi berikut:
+Buat file `.env` di root folder dan sesuaikan dengan `env.example`:
 
 ```env
-# --- DATABASE ---
-# Ganti dengan kredensial PostgreSQL lokal atau Cloud (Neon/Supabase)
-DATABASE_URL="postgresql://user:password@localhost:5432/marketplace_gp?schema=public"
-
-# --- AUTH (NextAuth) ---
+DATABASE_URL="postgresql://user:pass@localhost:5432/dekatrumah_db"
+NEXTAUTH_SECRET="rahasia_super_aman"
 NEXTAUTH_URL="http://localhost:3000"
-NEXTAUTH_SECRET="rahasia_dapur_bunda_123" # Generate string acak
-
-# --- GOOGLE OAUTH (Untuk Login Admin) ---
-GOOGLE_CLIENT_ID="dapatkan_di_gcp_console"
-GOOGLE_CLIENT_SECRET="dapatkan_di_gcp_console"
-
-# --- CLOUDINARY (Upload Gambar) ---
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="nama_cloud"
-CLOUDINARY_API_KEY="api_key_kamu"
-CLOUDINARY_API_SECRET="api_secret_kamu"
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="..."
+# ... variable lainnya
 
 ```
 
-### 4. Setup Database & Seeding
+### 4. Database Setup
 
-Jalankan migrasi untuk membuat tabel, lalu isi dengan data dummy (seeder) agar aplikasi tidak kosong.
+Pastikan PostgreSQL sudah berjalan, lalu jalankan perintah ini:
 
 ```bash
-# Push schema ke Database
-npx prisma migrate dev --name init
+# Generate Prisma Client
+npx prisma generate
 
-# Isi data dummy (20 UMKM, 20 Event, User Admin)
+# Push Schema ke Database
+npx prisma db push
+
+# 🌱 Seed Data (PENTING: Untuk mengisi Kategori awal)
 npx prisma db seed
 
 ```
@@ -102,79 +101,17 @@ npx prisma db seed
 ### 5. Jalankan Server
 
 ```bash
+# Gunakan --webpack jika ada isu dengan plugin PWA di Turbopack
 npm run dev
+# Buka localhost:3000
 
 ```
-
-Buka [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000) di browser.
 
 ---
 
-## 🧪 Testing & Performance
+## 🤝 Kontribusi & Lisensi
 
-Project ini dilengkapi dengan suite testing untuk memastikan kestabilan.
+Project ini dikembangkan secara mandiri (Indie Hacking) untuk kontribusi sosial bagi warga sekitar.
 
-### Unit Testing (Jest)
-
-Mengecek logika bisnis (Cart calculation, Slug generation, dll).
-
-```bash
-npm run test
-
-```
-
-### Load Testing (k6)
-
-Mengecek kekuatan server menahan traffic.
-
-> **Note:** Pastikan install k6 terlebih dahulu atau gunakan binary yang tersedia.
-
-```bash
-# Test beban normal (20 User)
-npm run test:load
-
-# Test stress (100 User simultan)
-npm run test:stress
-
-```
-
-*Hasil Benchmark terakhir: 40k Request dalam 9 menit dengan error rate 0% (Production Build).*
-
----
-
-## 📂 Struktur Project
-
-```
-src/
-├── app/                  # Next.js App Router (Pages & Layouts)
-│   ├── (admin)/          # Route Admin (Protected)
-│   ├── (public)/         # Route Public (Storefront)
-│   └── api/              # API Routes (Auth, Webhooks)
-├── components/           # Reusable UI Components
-│   ├── ui/               # Shadcn Primitives (Button, Card, etc)
-│   ├── layout/           # Navbar, Sidebar, Footer
-│   └── shared/           # Search, Filters, Uploaders
-├── features/             # Feature-based Modules (Domain Logic)
-│   ├── products/         # Logic Produk (Actions, Components)
-│   ├── umkm/             # Logic UMKM
-│   ├── cart/             # Logic Keranjang
-│   └── events/           # Logic Berita/Event
-├── lib/                  # Utilities (Prisma Client, Helpers)
-└── styles/               # Global CSS
-
-```
-
-## 🤝 Kontribusi
-
-Project ini *Open Source* untuk komunitas. Jika ingin berkontribusi:
-
-1. Fork repository ini.
-2. Buat branch fitur (`git checkout -b fitur-keren`).
-3. Commit perubahan (`git commit -m 'feat: nambah fitur keren'`).
-4. Push ke branch (`git push origin fitur-keren`).
-5. Buat Pull Request.
-
-## 📄 Lisensi
-
-[MIT License](https://www.google.com/search?q=LICENSE) © 2026 Gunung Putri Local Pride.
-Dibuat dengan ❤️ dan ☕.
+**Lisensi:** Proprietary / Internal Use Only.
+*Dibuat dengan ❤️ oleh [Eldevs](https://www.google.com/search?q=https://github.com/elfnc) untuk Warga Gunung Putri.*

@@ -21,6 +21,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
         title: `${umkm.name} - Marketplace Gunung Putri`,
         description: `Beli produk dari ${umkm.name}. ${umkm.address}.`,
+        openGraph: {
+            images: umkm.imageUrl ? [umkm.imageUrl] : [],
+        }
     }
 }
 
