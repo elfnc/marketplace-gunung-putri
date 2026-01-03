@@ -34,12 +34,7 @@ export function HeroSection({ products }: HeroSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center h-full py-16 lg:py-0">
 
           {/* KIRI: CONTENT */}
-          <Motion
-            className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8"
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-          >
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
 
             <Badge variant="secondary" className="px-4 py-1.5 rounded-full text-[#1F3D2B] bg-[#1F3D2B]/10 hover:bg-[#1F3D2B]/20 transition-colors">
               <MapPin className="w-3.5 h-3.5 mr-1.5" />
@@ -79,7 +74,7 @@ export function HeroSection({ products }: HeroSectionProps) {
                 </Link>
               </Button>
             </div>
-          </Motion>
+          </div>
 
           {/* KANAN: SINGLE FRAME VISUAL */}
           <Motion
