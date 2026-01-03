@@ -1,54 +1,54 @@
 export const COPY = {
   HERO: {
-    HEADLINE: "UMKM dekat rumah,\nlebih gampang dicari.",
+    HEADLINE: "Usaha dekat rumah,\nlebih gampang dicari.",
     SUBHEADLINE:
-      "Temukan makanan, produk, dan jasa dari usaha warga sekitar.\nLangsung chat lewat WhatsApp. Tanpa ribet.",
+      "Temukan makanan, produk, dan jasa dari usaha warga sekitar.\nLangsung hubungi lewat WhatsApp.",
     CTA_PRIMARY: "Jelajahi Usaha",
     CTA_SECONDARY: "Daftarkan Usaha",
   },
 
   SEARCH: {
     PLACEHOLDER: "Cari usaha atau produk di sekitar kamu…",
-    HELPER: "Makanan, minuman, jasa, laundry, dan usaha lokal lainnya.",
+    HELPER: "Kuliner, jasa harian, laundry, dan usaha lokal lainnya.",
   },
 
   FEATURED_PRODUCTS: {
-    TITLE: "Pilihan dari Usaha Sekitar",
+    TITLE: "Pilihan Usaha Sekitar",
     SUBTITLE:
-      "Produk dari UMKM warga yang aktif dan siap melayani pesanan.",
-    CARD_BTN: "Pesan",
-    CARD_HELPER: "Langsung chat penjual via WhatsApp",
+      "Produk dan layanan dari UMKM warga yang siap melayani pesanan.",
+    CARD_BTN: "Hubungi",
+    CARD_HELPER: "Langsung chat via WhatsApp",
   },
 
   UMKM_SECTION: {
     TITLE: "Usaha di Sekitar Gunung Putri",
     SUBTITLE:
-      "UMKM warga yang bisa langsung kamu hubungi tanpa perantara.",
+      "Daftar usaha lokal yang bisa langsung kamu hubungi tanpa perantara.",
     CTA_ALL: "Lihat Semua Usaha",
   },
 
   EVENT_BANNER: {
-    LABEL: "Info Warga",
+    LABEL: "Info Sekitar",
   },
 
   CTA_REGISTER: {
     HEADLINE: "Punya usaha di sekitar rumah?",
     SUBHEADLINE:
-      "Daftarkan UMKM kamu di DekatRumah supaya lebih mudah ditemukan warga sekitar.",
+      "Daftarkan usaha kamu di DekatRumah agar lebih mudah ditemukan warga sekitar.",
     BUTTON: "Daftarkan Usaha",
-    HELPER: "Gratis. Tanpa biaya pendaftaran dan tanpa potongan.",
+    HELPER: "Gratis untuk tahap awal.",
   },
 
   SUPPORT: {
     TEXT:
-      "DekatRumah dibangun dan dijalankan secara mandiri. Jika platform ini membantu usaha lokal, dukungan kecil sangat berarti untuk menjaga layanan tetap berjalan.",
-    BTN_SAWERIA: "Dukung via Saweria",
+      "DekatRumah dikembangkan sebagai platform untuk membantu usaha lokal lebih mudah ditemukan. Dukungan dari pengguna membantu pengembangan dan keberlanjutan layanan.",
+    BTN_SAWERIA: "Dukung Pengembangan",
     LINK_SAWERIA: "https://saweria.co/eldevs",
   },
 
   FOOTER: {
-    BRAND: "DekatRumah — UMKM Gunung Putri",
-    TAGLINE: "Biar usaha dekat rumah lebih gampang dicari.",
+    BRAND: "DekatRumah",
+    TAGLINE: "Menghubungkan warga dengan usaha di sekitarnya.",
   },
 
   CONTACT: {
@@ -57,9 +57,9 @@ export const COPY = {
 
   WA_TEMPLATE: {
     REGISTER: `Halo Admin DekatRumah,
-saya mau mendaftarkan usaha saya supaya bisa tampil di DekatRumah.
+saya ingin mendaftarkan usaha saya agar bisa tampil di platform DekatRumah.
 
-Data singkat usaha:
+Berikut data singkat usaha:
 --------------------------------
 Nama Pemilik:
 Nama Usaha:
@@ -69,65 +69,65 @@ Link Google Maps (jika ada):
 Instagram (opsional):
 Foto Produk / Usaha:
 --------------------------------
-Mohon info jika ada data yang perlu dilengkapi. Terima kasih 🙏`,
+Mohon informasinya jika ada data yang perlu dilengkapi. Terima kasih.`,
 
-    ASK_INFO: `Halo Admin DekatRumah, saya mau tanya-tanya seputar pendaftaran usaha di platform ini.`,
+    ASK_INFO: `Halo Admin DekatRumah, saya ingin bertanya terkait pendaftaran usaha.`,
   },
 
   SUPPORT_PAGE: {
-    HEADLINE: "Menjaga Ekonomi\nTetangga Tetap Bergerak.",
+    HEADLINE: "Mendekatkan Warga\nDengan Usaha Sekitar.",
     SUBHEADLINE:
-      "DekatRumah dibangun secara mandiri untuk membantu UMKM lokal. Tanpa investor, tanpa biaya admin, dan tanpa iklan yang mengganggu.",
-    STORY_TITLE: "Kenapa DekatRumah Dibuat?",
+      "DekatRumah bertujuan menjadi ruang bersama agar usaha lokal lebih mudah ditemukan dan dihubungi.",
+    STORY_TITLE: "Latar Belakang",
     STORY_P1:
-      "Berawal dari hal sederhana: mencari makanan, jasa, atau usaha sekitar sering kali harus lewat chat panjang di grup WhatsApp warga.",
+      "Di lingkungan sekitar, banyak usaha warga yang sebenarnya dibutuhkan, namun informasinya tersebar dan sulit ditemukan.",
     STORY_P2:
-      "Informasi mudah tertimbun, kontak hilang, atau kita tidak sadar bahwa tetangga sendiri punya usaha yang kita butuhkan.",
-    COST_TITLE: "Dukungan Digunakan Untuk Apa?",
-    COST_DESC: "Setiap dukungan akan digunakan untuk:",
+      "DekatRumah hadir sebagai solusi sederhana agar warga dapat menemukan usaha sekitar dengan lebih cepat dan rapi.",
+    COST_TITLE: "Pengembangan Platform",
+    COST_DESC: "Dukungan digunakan untuk:",
     COST_LIST: [
-      "Biaya server dan database",
-      "Perpanjangan domain",
-      "Layanan pendukung WhatsApp",
-      "Pengembangan fitur agar platform tetap stabil dan mudah digunakan",
+      "Operasional server dan domain",
+      "Pemeliharaan sistem",
+      "Peningkatan fitur dan pengalaman pengguna",
+      "Kebutuhan teknis pendukung layanan",
     ],
     CLOSING:
-      "Jika DekatRumah bermanfaat, dukungan kecil atau membagikannya ke warga sekitar sudah sangat membantu.",
+      "Masukan, dukungan, dan partisipasi dari warga sangat membantu pengembangan platform ini.",
   },
 
   ABOUT_PAGE: {
-    HEADLINE: "Usaha Ada di Sekitar,\nTapi Sulit Ditemukan.",
+    HEADLINE: "Usaha Ada di Sekitar,\nInformasinya Sering Terlewat.",
     PROBLEM_PARAGRAPHS: [
-      "Saat butuh tukang AC, snack box acara keluarga, atau laundry, sering kali kita harus tanya satu per satu di grup WhatsApp RT atau RW.",
-      "Pesan cepat tenggelam, kontak tidak tersimpan, dan informasi usaha warga tidak terdokumentasi dengan rapi.",
-      "Padahal, saling mendukung usaha tetangga bisa menggerakkan ekonomi lingkungan sendiri."
+      "Kebutuhan sehari-hari sering dicari lewat grup WhatsApp warga, namun informasinya mudah tertimbun.",
+      "Kontak usaha tidak terdokumentasi dengan rapi dan sulit ditemukan kembali.",
+      "Akibatnya, potensi usaha lokal sering tidak tersalurkan secara optimal."
     ],
-    SOLUTION_TITLE: "Satu Tempat untuk Usaha Sekitar.",
+    SOLUTION_TITLE: "Direktori Usaha Sekitar.",
     SOLUTION_DESC:
-      "DekatRumah hadir sebagai direktori digital sederhana untuk usaha warga sekitar. Bukan marketplace besar, tapi tempat agar usaha lokal lebih mudah ditemukan.",
+      "DekatRumah berfungsi sebagai direktori digital sederhana untuk usaha warga sekitar, tanpa proses yang rumit.",
     VALUES: [
       {
-        TITLE: "Tanpa Biaya Admin",
+        TITLE: "Tanpa Perantara",
         DESC:
-          "Pembeli langsung terhubung ke penjual lewat WhatsApp, tanpa potongan apa pun."
+          "Pembeli langsung terhubung ke penjual melalui WhatsApp."
       },
       {
-        TITLE: "Praktis & Sederhana",
+        TITLE: "Akses Mudah",
         DESC:
-          "Tidak perlu aplikasi atau akun. Cukup buka situs dan chat penjual."
+          "Tidak perlu aplikasi tambahan atau akun."
       },
       {
-        TITLE: "Fokus Lingkungan Sekitar",
+        TITLE: "Fokus Lokal",
         DESC:
-          "Memprioritaskan UMKM warga agar perputaran ekonomi tetap dekat dengan rumah."
+          "Memprioritaskan usaha di lingkungan sekitar."
       }
     ],
     DEV_SECTION: {
-      TITLE: "Tentang Pengembang",
+      TITLE: "Pengelolaan Platform",
       STORY:
-        "DekatRumah dikembangkan secara mandiri oleh warga lokal yang berprofesi sebagai software engineer, dibangun di sela waktu luang.",
+        "DekatRumah dikelola sebagai inisiatif digital untuk mendukung ekosistem usaha lokal.",
       QUOTE:
-        "\"Kalau usaha tetangga gampang dicari, semua ikut terbantu.\""
+        "\"Platform sederhana untuk kebutuhan sehari-hari di sekitar kita.\""
     }
   },
 };

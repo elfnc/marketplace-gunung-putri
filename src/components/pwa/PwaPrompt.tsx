@@ -11,7 +11,7 @@ import {
     DialogFooter,
 } from "@/components/ui/dialog"
 import { Download, Share, PlusSquare, RefreshCw, Smartphone } from "lucide-react"
-import { toast } from "sonner"
+import { Logo } from "@/components/brand/logo" // 👈 Kita import Logo biar keren
 
 export function PwaPrompt() {
     const [showInstallModal, setShowInstallModal] = useState(false)
@@ -27,38 +27,30 @@ export function PwaPrompt() {
 
         // 2. Handler untuk Install Prompt (Android/Desktop)
         const handleBeforeInstallPrompt = (e: any) => {
-            e.preventDefault() // Mencegah browser menampilkan prompt bawaan
+            e.preventDefault()
             setDeferredPrompt(e)
 
-            // Cek apakah sudah pernah menolak/install sebelumnya (opsional: pakai localStorage)
             const hasRefused = localStorage.getItem("pwa_install_refused")
             if (!hasRefused) {
-                // Tampilkan modal setelah 3 detik agar tidak kaget
                 setTimeout(() => setShowInstallModal(true), 3000)
             }
         }
 
-        // 3. Handler untuk Update Service Worker (Versi Baru)
-        // next-pwa menginject object 'workbox' ke window
+        // 3. Handler untuk Update Service Worker
         if (
             typeof window !== "undefined" &&
             "serviceWorker" in navigator &&
             (window as any).workbox !== undefined
         ) {
             const wb = (window as any).workbox
-
-            // Event ketika service worker baru ditemukan
             wb.addEventListener("waiting", () => {
                 setShowUpdateModal(true)
             })
-
-            // Register workbox
             wb.register()
         }
 
         window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt)
 
-        // Cek mode standalone (artinya sudah diinstall)
         const isStandalone = window.matchMedia("(display-mode: standalone)").matches
         if (isStandalone) {
             setShowInstallModal(false)
@@ -83,19 +75,15 @@ export function PwaPrompt() {
     }
 
     const handleUpdateClick = () => {
-        // Reload halaman untuk mengaktifkan service worker baru
-        // next-pwa biasanya otomatis skipWaiting, jadi reload cukup
         window.location.reload()
     }
 
     const handleCloseInstall = () => {
         setShowInstallModal(false)
-        // Simpan preferensi user agar tidak diganggu lagi sesi ini
         localStorage.setItem("pwa_install_refused", "true")
     }
 
-    // Jika sedang di iOS dan belum diinstall, kita bisa tampilkan instruksi manual
-    // (Logic sederhana: tampilkan modal install jika iOS & bukan standalone)
+    // Logic iOS Manual Trigger
     useEffect(() => {
         if (isIOS && !window.matchMedia("(display-mode: standalone)").matches) {
             const hasRefused = localStorage.getItem("pwa_install_refused")
@@ -110,51 +98,57 @@ export function PwaPrompt() {
         <>
             {/* --- DIALOG INSTALL --- */}
             <Dialog open={showInstallModal} onOpenChange={setShowInstallModal}>
-                <DialogContent className="sm:max-w-md">
+                <DialogContent className="sm:max-w-xs md:max-w-md rounded-2xl">
                     <DialogHeader>
-                        <DialogTitle className="flex items-center gap-2">
-                            <Smartphone className="h-5 w-5 text-[#1F3D2B]" />
+                        <DialogTitle className="flex items-center gap-2 text-[#1F3D2B]">
+                            <Smartphone className="h-5 w-5" />
                             Install Aplikasi
                         </DialogTitle>
                         <DialogDescription>
-                            Pasang aplikasi Marketplace Gunung Putri di HP kamu untuk akses lebih cepat, hemat kuota, dan bisa dibuka offline.
+                            Pasang <strong>DekatRumah</strong> agar akses lebih cepat dan hemat kuota internet.
                         </DialogDescription>
                     </DialogHeader>
 
                     {isIOS ? (
-                        // Layout Khusus iOS
-                        <div className="flex flex-col gap-4 py-2 text-sm text-muted-foreground">
+                        // Layout Khusus iOS (Tutorial)
+                        <div className="flex flex-col gap-4 py-3 text-sm text-muted-foreground bg-secondary/30 p-4 rounded-xl">
                             <div className="flex items-center gap-3">
-                                <div className="bg-gray-100 p-2 rounded-md">
-                                    <Share className="h-5 w-5 text-blue-500" />
+                                <div className="bg-white p-2 rounded-md shadow-sm text-blue-500">
+                                    <Share className="h-5 w-5" />
                                 </div>
-                                <span>1. Klik tombol <strong>Share</strong> di browser Safari bawah.</span>
+                                <span>1. Klik tombol <strong>Share</strong> di menu bawah Safari.</span>
                             </div>
                             <div className="flex items-center gap-3">
-                                <div className="bg-gray-100 p-2 rounded-md">
-                                    <PlusSquare className="h-5 w-5 text-gray-700" />
+                                <div className="bg-white p-2 rounded-md shadow-sm text-gray-700">
+                                    <PlusSquare className="h-5 w-5" />
                                 </div>
-                                <span>2. Pilih menu <strong>Add to Home Screen</strong> (Tambah ke Layar Utama).</span>
+                                <span>2. Pilih menu <strong>Add to Home Screen</strong>.</span>
                             </div>
                         </div>
                     ) : (
-                        // Layout Android / Desktop
-                        <div className="py-2">
-                            {/* Bisa taruh gambar preview app icon disini kalau mau */}
+                        // Layout Android / Desktop (Visual Preview)
+                        <div className="py-6 flex flex-col items-center justify-center gap-4 bg-secondary/10 rounded-xl border border-dashed border-[#1F3D2B]/20">
+                            <div className="h-16 w-16 bg-white rounded-2xl shadow-sm flex items-center justify-center border border-[#1F3D2B]/10">
+                                <Logo className="h-10 w-10" />
+                            </div>
+                            <div className="text-center space-y-1">
+                                <p className="font-bold text-[#1F3D2B] text-lg">DekatRumah</p>
+                                <p className="text-xs text-muted-foreground">Direktori Usaha Warga</p>
+                            </div>
                         </div>
                     )}
 
-                    <DialogFooter className="flex flex-col-reverse sm:flex-row gap-2">
-                        <Button variant="ghost" onClick={handleCloseInstall}>
+                    <DialogFooter className="flex flex-col-reverse sm:flex-row gap-2 mt-2">
+                        <Button variant="ghost" onClick={handleCloseInstall} className="text-muted-foreground">
                             Nanti Saja
                         </Button>
                         {!isIOS && (
-                            <Button onClick={handleInstallClick} className="bg-[#1F3D2B] hover:bg-[#152b1e]">
+                            <Button onClick={handleInstallClick} className="bg-[#1F3D2B] hover:bg-[#152b1e] font-semibold">
                                 <Download className="mr-2 h-4 w-4" /> Install Sekarang
                             </Button>
                         )}
                         {isIOS && (
-                            <Button onClick={handleCloseInstall}>Saya Mengerti</Button>
+                            <Button onClick={handleCloseInstall} className="bg-[#1F3D2B]">Saya Mengerti</Button>
                         )}
                     </DialogFooter>
                 </DialogContent>
@@ -162,16 +156,22 @@ export function PwaPrompt() {
 
             {/* --- DIALOG UPDATE --- */}
             <Dialog open={showUpdateModal} onOpenChange={setShowUpdateModal}>
-                <DialogContent>
+                <DialogContent className="sm:max-w-sm rounded-2xl">
                     <DialogHeader>
-                        <DialogTitle>Update Tersedia</DialogTitle>
+                        <DialogTitle className="flex items-center gap-2">
+                            <RefreshCw className="h-5 w-5 text-[#C56A4A] animate-spin-slow" />
+                            Update Tersedia
+                        </DialogTitle>
                         <DialogDescription>
-                            Versi baru Marketplace Gunung Putri tersedia. Refresh untuk mendapatkan fitur terbaru.
+                            Versi baru <strong>DekatRumah</strong> sudah tersedia. Refresh aplikasi untuk mendapatkan fitur terbaru.
                         </DialogDescription>
                     </DialogHeader>
+                    <div className="flex justify-center py-4">
+                        <Logo className="h-12 w-12 opacity-80 grayscale" />
+                    </div>
                     <DialogFooter>
-                        <Button onClick={handleUpdateClick} className="w-full">
-                            <RefreshCw className="mr-2 h-4 w-4" /> Refresh Aplikasi
+                        <Button onClick={handleUpdateClick} className="w-full bg-[#1F3D2B] hover:bg-[#152b1e]">
+                            Refresh Aplikasi
                         </Button>
                     </DialogFooter>
                 </DialogContent>

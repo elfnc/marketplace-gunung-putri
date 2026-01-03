@@ -1,9 +1,10 @@
 import { PublicNavbar } from "@/components/layout/PublicNavbar"
-import { Logo } from "@/components/brand/logo" // 👈 Pastikan import ini
+import { Logo } from "@/components/brand/logo"
 import { COPY } from "@/lib/copywritting"
 import Link from "next/link"
 import { Heart, MapPin, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { getWhatsAppLink } from "@/lib/utils" // 👈 Pastikan import ini ada!
 
 export default function PublicLayout({
   children,
@@ -22,14 +23,12 @@ export default function PublicLayout({
       <footer className="bg-[#F4F1EC] border-t border-[#E6E3DF] pt-16 pb-8">
         <div className="container mx-auto px-4">
 
-          {/* TOP SECTION: Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
 
-            {/* COLUMN 1: Brand Identity (4 cols) */}
+            {/* COLUMN 1: Brand Identity */}
             <div className="md:col-span-5 space-y-6">
               <Link href="/" className="inline-block group">
                 <div className="flex items-center gap-3">
-                  {/* ✅ LOGO ASLI (Konsisten dengan Navbar) */}
                   <div className="h-10 w-10 bg-white border border-[#1F3D2B]/10 rounded-xl flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
                     <Logo className="h-6 w-6" />
                   </div>
@@ -49,7 +48,7 @@ export default function PublicLayout({
               </div>
             </div>
 
-            {/* COLUMN 2: Platform Links (2-3 cols) */}
+            {/* COLUMN 2: Platform Links */}
             <div className="md:col-span-3 space-y-4">
               <h4 className="font-bold text-[#1C1C1C]">Platform</h4>
               <ul className="space-y-3 text-sm text-muted-foreground">
@@ -57,10 +56,10 @@ export default function PublicLayout({
                   <Link href="/produk" className="hover:text-[#1F3D2B] transition-colors">Jajanan & Produk</Link>
                 </li>
                 <li>
-                  <Link href="/umkm" className="hover:text-[#1F3D2B] transition-colors">Direktori UMKM</Link>
+                  <Link href="/umkm" className="hover:text-[#1F3D2B] transition-colors">Direktori Usaha</Link>
                 </li>
                 <li>
-                  <Link href="/events" className="hover:text-[#1F3D2B] transition-colors">Info Warga</Link>
+                  <Link href="/events" className="hover:text-[#1F3D2B] transition-colors">Info Sekitar</Link>
                 </li>
                 <li>
                   <Link href="/tentang" className="hover:text-[#1F3D2B] transition-colors">Tentang Kami</Link>
@@ -68,7 +67,7 @@ export default function PublicLayout({
               </ul>
             </div>
 
-            {/* COLUMN 3: Community & Support (4 cols) */}
+            {/* COLUMN 3: Community & Support */}
             <div className="md:col-span-4 space-y-4">
               <h4 className="font-bold text-[#1C1C1C]">Dukungan & Komunitas</h4>
               <p className="text-sm text-muted-foreground mb-4">
@@ -81,12 +80,17 @@ export default function PublicLayout({
               >
                 <Link href="/dukung">
                   <Heart className="h-4 w-4" />
-                  Dukung Project Ini
+                  Dukung Pengembangan
                 </Link>
               </Button>
 
               <div className="pt-4 mt-4 border-t border-gray-200">
-                <Link href={`https://wa.me/${COPY.CONTACT.ADMIN_WA}`} target="_blank" className="text-sm text-muted-foreground hover:text-[#1F3D2B] flex items-center gap-1 group">
+                {/* 👇 DISINI INTEGRASI WA NYA */}
+                <Link
+                  href={getWhatsAppLink(COPY.WA_TEMPLATE.ASK_INFO)}
+                  target="_blank"
+                  className="text-sm text-muted-foreground hover:text-[#1F3D2B] flex items-center gap-1 group w-fit"
+                >
                   Butuh bantuan? <span className="underline decoration-dotted group-hover:text-[#1F3D2B]">Chat Admin</span> <ExternalLink className="h-3 w-3" />
                 </Link>
               </div>
@@ -94,7 +98,7 @@ export default function PublicLayout({
 
           </div>
 
-          {/* BOTTOM SECTION: Copyright */}
+          {/* BOTTOM SECTION */}
           <div className="border-t border-[#1F3D2B]/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
             <p>&copy; {new Date().getFullYear()} DekatRumah. All rights reserved.</p>
             <div className="flex items-center gap-1">
