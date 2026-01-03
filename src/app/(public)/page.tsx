@@ -2,7 +2,7 @@ import { Suspense } from "react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { COPY } from "@/lib/copywritting"
-import { getFeaturedProducts } from "@/features/products/server/getProduct"
+import { getCategories, getFeaturedProducts } from "@/features/products/server/getProduct"
 import { getFeaturedUmkms } from "@/features/umkm/server/getUmkm"
 import { HeroSection } from "@/features/home/components/HeroSection"
 import { SearchCategorySection } from "@/features/home/components/SearchCategory"
@@ -23,9 +23,10 @@ export const revalidate = 60
 
 export default async function HomePage() {
   // Fetch Produk & UMKM secara paralel biar cepat
-  const [products, featuredUmkms] = await Promise.all([
+  const [products, featuredUmkms, categories] = await Promise.all([
     getFeaturedProducts(),
-    getFeaturedUmkms()
+    getFeaturedUmkms(),
+    getCategories()
   ])
 
   return (
@@ -34,7 +35,7 @@ export default async function HomePage() {
       <HeroSection products={products} />
 
       <Suspense fallback={<div className="container mx-auto h-24 bg-secondary/20 animate-pulse rounded-xl my-8" />}>
-        <SearchCategorySection />
+        <SearchCategorySection categories={categories} />
       </Suspense>
 
       {/* 3. PRODUK UNGGULAN */}

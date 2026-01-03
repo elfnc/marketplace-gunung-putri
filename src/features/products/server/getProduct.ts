@@ -1,3 +1,4 @@
+// src/features/products/server/getProduct.ts
 import { prisma } from "@/lib/prisma"
 
 const ITEMS_PER_PAGE = 12
@@ -83,7 +84,7 @@ export async function getProducts({ page = 1, category, search }: ProductFilterP
       totalPages: Math.ceil(totalCount / ITEMS_PER_PAGE),
       totalCount,
       // Tambahkan ini biar dipake di pagination UI
-      currentPage: page 
+      currentPage: page
     }
   }
 }
