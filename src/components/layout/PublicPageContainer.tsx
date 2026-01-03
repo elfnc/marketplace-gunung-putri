@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 import { cn } from "@/lib/utils"
 
 interface PublicPageContainerProps {
-    title: string
+    title: ReactNode
     description?: ReactNode
     headerAction?: ReactNode
     children: ReactNode
