@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${product.name} - ${product.umkm.name} | Gunung Putri`,
-    description: product.description?.slice(0, 160) || `Beli ${product.name} dari ${product.umkm.name} di Marketplace UMKM Gunung Putri.`,
+    description: product.description?.slice(0, 160) || `Beli ${product.name} dari ${product.umkm.name} di Web DekatRumah Gunung Putri.`,
     openGraph: {
       images: product.imageUrl ? [product.imageUrl] : [],
     }

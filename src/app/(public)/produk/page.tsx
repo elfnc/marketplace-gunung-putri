@@ -26,7 +26,7 @@ export async function generateMetadata({
     : "Terlengkap"
 
   return {
-    title: `Jual Produk ${categoryName} - Marketplace Gunung Putri`,
+    title: `Jual Produk ${categoryName} - DekatRumah Gunung Putri`,
     description: "Cari produk lokal UMKM Gunung Putri. Makanan, Jasa, dan Kerajinan.",
   }
 }

@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (!umkm) return { title: "UMKM Tidak Ditemukan" }
 
     return {
-        title: `${umkm.name} - Marketplace Gunung Putri`,
+        title: `${umkm.name} - DekatRumah Gunung Putri`,
         description: `Beli produk dari ${umkm.name}. ${umkm.address}.`,
         openGraph: {
             images: umkm.imageUrl ? [umkm.imageUrl] : [],
@@ -102,7 +102,7 @@ export default async function UmkmProfilePage({ params }: { params: Promise<{ sl
                             <div className="pt-2 flex flex-row gap-3">
                                 <Button asChild className="rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold shadow-sm flex-1">
                                     <Link
-                                        href={getWhatsAppLink(`Halo ${umkm.name}, saya lihat profil Anda di Marketplace Gunung Putri...`, umkm.phone)}
+                                        href={getWhatsAppLink(`Halo ${umkm.name}, saya lihat profil Anda di Web DekatRumah...`, umkm.phone)}
                                         target="_blank"
                                     >
                                         <MessageCircle className="mr-2 h-4 w-4" />
@@ -111,7 +111,7 @@ export default async function UmkmProfilePage({ params }: { params: Promise<{ sl
                                 </Button>
                                 <ShareButton
                                     title={umkm.name}
-                                    text={`Cek profil UMKM ${umkm.name} di Marketplace Gunung Putri!`}
+                                    text={`Cek profil UMKM ${umkm.name} di Web DekatRumah Gunung Putri!`}
                                     className="rounded-full"
                                 />
                             </div>
