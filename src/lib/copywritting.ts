@@ -57,19 +57,28 @@ export const COPY = {
 
   WA_TEMPLATE: {
     REGISTER: `Halo Admin DekatRumah,
-saya ingin mendaftarkan usaha agar bisa tampil di DekatRumah.
+saya ingin mendaftarkan usaha agar bisa tampil di platform DekatRumah.
 
-Data singkat usaha saya:
+DATA UMKM
 --------------------------------
-Nama Pemilik:
 Nama Usaha:
-Kategori Usaha:
-Alamat Lengkap:
-Link Google Maps (jika ada):
-Instagram (opsional):
-Foto Produk / Usaha:
+Deskripsi Usaha:
+Kategori Usaha: (contoh: Kuliner, Jasa, Laundry, dll)
+Alamat Usaha:
+No WhatsApp Aktif: (format 628xxxx)
+Jam Operasional: (opsional)
+Foto UMKM / Banner: (1–2 foto)
 --------------------------------
-Mohon dibantu jika ada data yang perlu dilengkapi. Terima kasih 🙏`,
+
+DATA PRODUK (boleh lebih dari 1)
+--------------------------------
+Nama Produk:
+Harga:
+Deskripsi Produk: (opsional)
+Foto Produk:
+--------------------------------
+
+Terima kasih.`,
 
     ASK_INFO: `Halo Admin DekatRumah, saya mau tanya terkait pendaftaran usaha.`,
   },
