@@ -64,6 +64,12 @@ export default function PublicLayout({
                 <li>
                   <Link href="/tentang" className="hover:text-[#1F3D2B] transition-colors">Tentang Kami</Link>
                 </li>
+                <li>
+                  <Link href="/faq" className="hover:text-[#1F3D2B] transition-colors">Pertanyaan Umum (FAQ)</Link>
+                </li>
+                <li>
+                  <Link href="/kebijakan-privasi" className="hover:text-[#1F3D2B] transition-colors">Kebijakan Privasi</Link>
+                </li>
               </ul>
             </div>
 
